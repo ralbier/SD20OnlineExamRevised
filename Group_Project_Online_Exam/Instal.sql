@@ -148,28 +148,50 @@ create table tbQuestion
 (
   QuestionId int primary key identity(1,1),
   Question varchar(max),
-  Answer1 varchar(max) NULL,
-  Answer2 varchar(max) NULL,
-  Answer3 varchar(max) NULL,
-  Answer4 varchar(max) NULL,
-  CorrectAnswer varchar(max),
+  
+  CorrectAnswer int,
   Marks int,
+
   QuizId int foreign key references tbQuiz(QuizId)
 )
 go
+create table tbQuestionsAnswer
+(
+AnswerId int ,
+Answer varchar(max) NULL,
+QuestionId int foreign key references tbQuestion(QuestionId)
+)
 
 
-INSERT INTO tbQuestion  (Question,Answer1,Answer2,Answer3,Answer4,CorrectAnswer,Marks,QuizId)VALUES
-('What  Default Data Type ?', 'String', 'Variant', 'Integer', 'Boolear','Variant',1,1),
-( 'What is Default Form Border Style ?', 'Fixed Single', 'None', 'Sizeable','Fixed Diaglog', 'Sizeable',1,1),
- ( 'Which is not type of Control ?', 'text', 'lable', 'checkbox', 'option button', 'text',1,1),
-( 'Which of the follwing contexts are available in the add watch window?', 'Project', 'Module', 'Procedure', 'All', 'All',1,1),
-( 'Which window will allow you to halt the execution of your code when a variable changes?', 'The call stack window', 'The immedite window', 'The locals window', 'The watch window', 'The watch window',1,1),
-( 'How can you print the object name associated with the last VB  error to the Immediate window?', 'Debug.Print Err.Number', 'Debug.Print Err.Source', 'Debug.Print Err.Description', 'Debug.Print Err.LastDLLError', 'Debug.Print Err.Source',1,1),
-('boolean has two values true or false','true','false',null,null,'true',1,1),	
-( 'How can you print the object name associated with the last VB  error to the Immediate window?', 'Debug.Print Err.Number', 'Debug.Print Err.Source', 'Debug.Print Err.Description', 'Debug.Print Err.LastDLLError', 'Debug.Print Err.Source',1,1),
-( 'What function does the TabStop property on a command button perform?', 'It determines whether the button can get the focus', 'If set to False it disables the Tabindex property.', 'It determines the order in which the button will receive the focus', 'It determines if the access key swquence can be used', 'It determines whether the button can get the focus',1,1),
-( 'You application creates an instance of a form. What is the first event that will be triggered in the from?', 'Load', 'GotFocus', 'Instance', 'Initialize', 'Initialize',1,1)
+go
+INSERT INTO tbQuestion  (Question,CorrectAnswer,Marks,QuizId)VALUES
+('What  Default Data Type ?',2,1,1),
+( 'What is Default Form Border Style ?',3,1,1),
+( 'Which is not type of Control ?',1,1,1),
+( 'Which of the follwing contexts are available in the add watch window?', 4,1,2),
+( 'Which window will allow you to halt the execution of your code when a variable changes?',4,1,2)
+--( 'How can you print the object name associated with the last VB  error to the Immediate window?', 'Debug.Print Err.Number', 'Debug.Print Err.Source', 'Debug.Print Err.Description', 'Debug.Print Err.LastDLLError', 'Debug.Print Err.Source',1,1),
+--('boolean has two values true or false','true','false',null,null,'true',1,1),	
+--( 'How can you print the object name associated with the last VB  error to the Immediate window?', 'Debug.Print Err.Number', 'Debug.Print Err.Source', 'Debug.Print Err.Description', 'Debug.Print Err.LastDLLError', 'Debug.Print Err.Source',1,1),
+--( 'What function does the TabStop property on a command button perform?', 'It determines whether the button can get the focus', 'If set to False it disables the Tabindex property.', 'It determines the order in which the button will receive the focus', 'It determines if the access key swquence can be used', 'It determines whether the button can get the focus',1,1),
+--( 'You application creates an instance of a form. What is the first event that will be triggered in the from?', 'Load', 'GotFocus', 'Instance', 'Initialize', 'Initialize',1,1)
+go
+INSERT INTO tbQuestionsAnswer(AnswerId,Answer,QuestionId)VALUES
+							(1,'String',1),(2,'Variant',1),(3,'Interger',1),(4,'Boolean',1)
+							, (1,'Fixed Single',2),( 2,'None',2),(3, 'Sizeable',2),(4,'Fixed Diaglog',2), 
+							 (1,'text',3), (2,'lable',3), (3,'checkbox',3), (4,'option button',3),
+							 (1,'Project',4), (2,'Module',4),(3, 'Procedure',4), (4,'All',4),
+							  (1,'The call stack window',5),(2, 'The immedite window',5), (3,'The locals window',5),(4, 'The watch window',5) 
+--('What  Default Data Type ?', 'String', 'Variant', 'Integer', 'Boolear','Variant',1,1),
+--( 'What is Default Form Border Style ?', 'Fixed Single', 'None', 'Sizeable','Fixed Diaglog', 'Sizeable',1,1),
+-- ( 'Which is not type of Control ?', 'text', 'lable', 'checkbox', 'option button', 'text',1,1),
+--( 'Which of the follwing contexts are available in the add watch window?', 'Project', 'Module', 'Procedure', 'All', 'All',1,1),
+--( 'Which window will allow you to halt the execution of your code when a variable changes?', 'The call stack window', 'The immedite window', 'The locals window', 'The watch window', 'The watch window',1,1),
+--( 'How can you print the object name associated with the last VB  error to the Immediate window?', 'Debug.Print Err.Number', 'Debug.Print Err.Source', 'Debug.Print Err.Description', 'Debug.Print Err.LastDLLError', 'Debug.Print Err.Source',1,1),
+--('boolean has two values true or false','true','false',null,null,'true',1,1),	
+--( 'How can you print the object name associated with the last VB  error to the Immediate window?', 'Debug.Print Err.Number', 'Debug.Print Err.Source', 'Debug.Print Err.Description', 'Debug.Print Err.LastDLLError', 'Debug.Print Err.Source',1,1),
+--( 'What function does the TabStop property on a command button perform?', 'It determines whether the button can get the focus', 'If set to False it disables the Tabindex property.', 'It determines the order in which the button will receive the focus', 'It determines if the access key swquence can be used', 'It determines whether the button can get the focus',1,1),
+--( 'You application creates an instance of a form. What is the first event that will be triggered in the from?', 'Load', 'GotFocus', 'Instance', 'Initialize', 'Initialize',1,1)
 
 go
 select * from tbQuestion
@@ -403,70 +425,70 @@ create proc spUpdateUser
 	set FirstName=@FirstName, 
 		LastName=@LastName,
 		Password=@Password, 
-		Email=@Email, 
-		SecurityLevel=@SecurityLevel
+		Email=@Email
+		--SecurityLevel=@SecurityLevel
 	where UserId=@UserId
 	end
 go
 ----------------------------------------
-create proc spQuestionsInsert
-(
-  @Question varchar(500),
-  @Answer1 varchar(50),
-  @Answer2 varchar(50),
-  @Answer3 varchar(50),
-  @Answer4 varchar(50),
-  @CorrectAnswer varchar(4),
-  @Marks int
- )
-as begin
-  insert into tbQuestion(Question,Answer1,Answer2,Answer3,Answer4,CorrectAnswer,Marks)values
-						(@Question,@Answer1,@Answer2,@Answer3,@Answer4,@CorrectAnswer,@Marks)
-end
-go
-create proc spQuestionsUpdate
-(
-  @QuestionId int,
-  @Question varchar(500),
-  @Answer1 varchar(50),
-  @Answer2 varchar(50),
-  @Answer3 varchar(50),
-  @Answer4 varchar(50),
-  @CorrectAnswer varchar(4),
-  @Marks int
-)
-as begin
-  update tbQuestion
-  set Question=@Question,
-	  Answer1=@Answer1,
-	  Answer2=@Answer2,
-	  Answer3=@Answer3,
-	  Answer4=@Answer4,
-	  CorrectAnswer=@CorrectAnswer,
-	  Marks=@Marks
-	  where QuestionId=@QuestionId
+--create proc spQuestionsInsert
+--(
+--  @Question varchar(500),
+--  @Answer1 varchar(50),
+--  @Answer2 varchar(50),
+--  @Answer3 varchar(50),
+--  @Answer4 varchar(50),
+--  @CorrectAnswer varchar(4),
+--  @Marks int
+-- )
+--as begin
+--  insert into tbQuestion(Question,Answer1,Answer2,Answer3,Answer4,CorrectAnswer,Marks)values
+--						(@Question,@Answer1,@Answer2,@Answer3,@Answer4,@CorrectAnswer,@Marks)
+--end
+--go
+--create proc spQuestionsUpdate
+--(
+--  @QuestionId int,
+--  @Question varchar(500),
+--  @Answer1 varchar(50),
+--  @Answer2 varchar(50),
+--  @Answer3 varchar(50),
+--  @Answer4 varchar(50),
+--  @CorrectAnswer varchar(4),
+--  @Marks int
+--)
+--as begin
+--  update tbQuestion
+--  set Question=@Question,
+--	  Answer1=@Answer1,
+--	  Answer2=@Answer2,
+--	  Answer3=@Answer3,
+--	  Answer4=@Answer4,
+--	  CorrectAnswer=@CorrectAnswer,
+--	  Marks=@Marks
+--	  where QuestionId=@QuestionId
 
-end
-go
-create proc spQuestionDelete
-(
-@QuestionId int
-)
-as begin
-	delete from tbQuestion
-	where QuestionId=@QuestionId
-end
-go
+--end
+--go
+--create proc spQuestionDelete
+--(
+--@QuestionId int
+--)
+--as begin
+--	delete from tbQuestion
+--	where QuestionId=@QuestionId
+--end
+--go
 
-create proc spQuestion
-(
-@QuestionId int
-)
-as begin
-	select * from tbQuestion
-	where QuestionId=isnull(@QuestionId,QuestionId)
-end 
-go
+--create proc spQuestion
+--(
+--@QuestionId int
+--)
+--as begin
+--	select * from tbQuestion
+--	where QuestionId=isnull(@QuestionId,QuestionId)
+--end 
+--go
 
 create proc spQuestionsbyQuizId  
 (
@@ -477,8 +499,13 @@ as begin
 	where QuizId=isnull(@QuizId,QuizId)
 end 
 exec spQuestion @QuestionId=3
-
 go
+
+
+
+
+
+
 ---------------------Create Login Proc For User--------------------------
 
 create procedure UserspLogin(
@@ -590,52 +617,52 @@ as begin
 end
 go
 -----------------------------------------------------------------------
-create proc spInsertQuestionMultiChoice
-(
-@QuizTitle varchar(60),
-@ProgramId int,
-@DifficultyId int,
-@TimeInMinute dateTime,
-@TypeOfQuestionsId int,
-@Question varchar(max),
-@Answer1 varchar(60),
-@Answer2 varchar(60),
-@Answer3 varchar(60),
-@Answer4 varchar(60),
-@CorrectAnswer varchar(60),
-@Mark int
-)
-as begin
- insert into tbQuiz(QuizTitle,TimeInMinute,ProgramId,DifficultyId,TypeOfQuestionsId)values
-				   (@QuizTitle,@TimeInMinute,@ProgramId,@DifficultyId,@TypeOfQuestionsId)
- insert into tbQuestion(Question,Answer1,Answer2,Answer3,Answer4,CorrectAnswer,Marks)values
-						(@Question,@Answer1,@Answer2,@Answer3,@Answer4,@CorrectAnswer,@Mark)
-end
-go
-create proc spInsertQuestionTrueFalse
-(
-@QuizTitle varchar(max),
-@ProgramId int,
-@DifficultyId int,
-@TimeInMinute dateTime,
-@TypeOfQuestionsId int,
-@Question varchar(max),
+--create proc spInsertQuestionMultiChoice
+--(
+--@QuizTitle varchar(60),
+--@ProgramId int,
+--@DifficultyId int,
+--@TimeInMinute dateTime,
+--@TypeOfQuestionsId int,
+--@Question varchar(max),
 --@Answer1 varchar(60),
 --@Answer2 varchar(60),
-@CorrectAnswer varchar(max),
-@Mark int
-)
-as begin
- insert into tbQuiz(QuizTitle,TimeInMinute,ProgramId,DifficultyId,TypeOfQuestionsId)values
-				   (@QuizTitle,@TimeInMinute,@ProgramId,@DifficultyId,@TypeOfQuestionsId)
- insert into tbQuestion(Question,CorrectAnswer,Marks)values
-						(@Question,@CorrectAnswer,@Mark)
-end
-go
+--@Answer3 varchar(60),
+--@Answer4 varchar(60),
+--@CorrectAnswer varchar(60),
+--@Mark int
+--)
+--as begin
+-- insert into tbQuiz(QuizTitle,TimeInMinute,ProgramId,DifficultyId,TypeOfQuestionsId)values
+--				   (@QuizTitle,@TimeInMinute,@ProgramId,@DifficultyId,@TypeOfQuestionsId)
+-- insert into tbQuestion(Question,Answer1,Answer2,Answer3,Answer4,CorrectAnswer,Marks)values
+--						(@Question,@Answer1,@Answer2,@Answer3,@Answer4,@CorrectAnswer,@Mark)
+--end
+--go
+--create proc spInsertQuestionTrueFalse
+--(
+--@QuizTitle varchar(max),
+--@ProgramId int,
+--@DifficultyId int,
+--@TimeInMinute dateTime,
+--@TypeOfQuestionsId int,
+--@Question varchar(max),
+----@Answer1 varchar(60),
+----@Answer2 varchar(60),
+--@CorrectAnswer varchar(max),
+--@Mark int
+--)
+--as begin
+-- insert into tbQuiz(QuizTitle,TimeInMinute,ProgramId,DifficultyId,TypeOfQuestionsId)values
+--				   (@QuizTitle,@TimeInMinute,@ProgramId,@DifficultyId,@TypeOfQuestionsId)
+-- insert into tbQuestion(Question,CorrectAnswer,Marks)values
+--						(@Question,@CorrectAnswer,@Mark)
+--end
+--go
 
 
 
----------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------
 
 create procedure spGetActiveQuizByUser 
 (
@@ -898,3 +925,34 @@ create proc spInsertQuestionResponse
 
 end
 go
+
+
+
+create proc sploadQuestions
+( 
+ @QuizId int 
+)
+as begin
+create table #QuestionAnswer(
+			QuestionId int,
+			Answer1 varchar(max),
+			Answer2 varchar(max),
+			Answer3 varchar(max),
+			Answer4 varchar(max)
+						)
+
+insert into #QuestionAnswer 
+select * from tbQuestionsAnswer 
+pivot (
+		max(Answer) for AnswerId
+			in ([1],[2],[3],[4] ) )as answers
+
+			where QuestionId in (
+			select QuestionId from tbQuestion where QuizId=@QuizId)
+
+select tbQuestion.QuestionId,Question,Answer1,Answer2,Answer3,Answer4,CorrectAnswer,Marks,QuizId from #QuestionAnswer,tbQuestion
+where tbQuestion.QuestionId=#QuestionAnswer.QuestionId
+
+end
+go
+exec sploadQuestions @QuizId=1

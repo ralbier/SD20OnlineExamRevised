@@ -185,7 +185,7 @@ namespace Group_Project_Online_Exam
             {
                 DAL mydal = new DAL(conn);
                 mydal.AddParam("@QuizId", Session["QuizId"].ToString());
-                DataSet ds = mydal.ExecuteProcedure("spQuestionsbyQuizId");
+                DataSet ds = mydal.ExecuteProcedure("sploadQuestions");
                 dt = ds.Tables[0];
                 string CorrectAnswer = dt.Rows[rowindex]["CorrectAnswer"].ToString();
 
