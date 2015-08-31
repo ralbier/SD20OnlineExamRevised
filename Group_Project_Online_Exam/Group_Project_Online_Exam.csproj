@@ -1,0 +1,400 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BB3B741F-C0D7-4979-9F07-CDFA10E26314}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Group_Project_Online_Exam</RootNamespace>
+    <AssemblyName>Group_Project_Online_Exam</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=15.1.2.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Documents\ASP.NET AJAX Control Toolkit\Bin\AjaxControlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ActiveExam.aspx" />
+    <Content Include="ActiveExamForStudent.aspx" />
+    <Content Include="Add_Program_and_Session.aspx" />
+    <Content Include="ChangePassword.aspx" />
+    <Content Include="compiled\flipclock.css" />
+    <Content Include="compiled\flipclock.js" />
+    <Content Include="compiled\flipclock.min.js" />
+    <Content Include="ExamPage.aspx" />
+    <Content Include="favicon-96x96.png" />
+    <Content Include="favicon.ico" />
+    <Content Include="FinishExam.aspx" />
+    <Content Include="FlipClock-master\.gitignore" />
+    <Content Include="FlipClock-master\compiled\flipclock.css" />
+    <Content Include="FlipClock-master\compiled\flipclock.js" />
+    <Content Include="FlipClock-master\compiled\flipclock.min.js" />
+    <Content Include="FlipClock-master\examples\base.html" />
+    <Content Include="FlipClock-master\examples\countdown-from-new-years-without-seconds.html" />
+    <Content Include="FlipClock-master\examples\countdown-from-new-years.html" />
+    <Content Include="FlipClock-master\examples\countdown-start-callback.html" />
+    <Content Include="FlipClock-master\examples\countdown-stop-callback.html" />
+    <Content Include="FlipClock-master\examples\countdown-to-new-years-without-seconds.html" />
+    <Content Include="FlipClock-master\examples\countdown-to-new-years.html" />
+    <Content Include="FlipClock-master\examples\daily-counter-countdown.html" />
+    <Content Include="FlipClock-master\examples\daily-counter.html" />
+    <Content Include="FlipClock-master\examples\hourly-counter.html" />
+    <Content Include="FlipClock-master\examples\interval-callback.html" />
+    <Content Include="FlipClock-master\examples\load-new-clock-face.html" />
+    <Content Include="FlipClock-master\examples\localization.html" />
+    <Content Include="FlipClock-master\examples\minute-counter-overflow.html" />
+    <Content Include="FlipClock-master\examples\minute-counter.html" />
+    <Content Include="FlipClock-master\examples\multiple-instances.html" />
+    <Content Include="FlipClock-master\examples\simple-countdown-autostart.html" />
+    <Content Include="FlipClock-master\examples\simple-counter-autostart.html" />
+    <Content Include="FlipClock-master\examples\simple-counter-minimum-digits.html" />
+    <Content Include="FlipClock-master\examples\simple-counter.html" />
+    <Content Include="FlipClock-master\examples\test.html" />
+    <Content Include="FlipClock-master\examples\twelve-hour-clock-custom-time.html" />
+    <Content Include="FlipClock-master\examples\twelve-hour-clock-without-seconds.html" />
+    <Content Include="FlipClock-master\examples\twelve-hour-clock.html" />
+    <Content Include="FlipClock-master\examples\twenty-four-hour-clock-custom-time.html" />
+    <Content Include="FlipClock-master\examples\twenty-four-hour-clock-without-seconds.html" />
+    <Content Include="FlipClock-master\examples\twenty-four-hour-clock.html" />
+    <Content Include="FlipClock-master\Gruntfile.js" />
+    <Content Include="FlipClock-master\license.txt" />
+    <Content Include="FlipClock-master\src\flipclock\css\flipclock.css" />
+    <Content Include="FlipClock-master\src\flipclock\js\faces\counter.js" />
+    <Content Include="FlipClock-master\src\flipclock\js\faces\dailycounter.js" />
+    <Content Include="FlipClock-master\src\flipclock\js\faces\hourlycounter.js" />
+    <Content Include="FlipClock-master\src\flipclock\js\faces\minutecounter.js" />
+    <Content Include="FlipClock-master\src\flipclock\js\faces\twelvehourclock.js" />
+    <Content Include="FlipClock-master\src\flipclock\js\faces\twentyfourhourclock.js" />
+    <Content Include="FlipClock-master\src\flipclock\js\lang\ar-ar.js" />
+    <Content Include="FlipClock-master\src\flipclock\js\lang\da-dk.js" />
+    <Content Include="FlipClock-master\src\flipclock\js\lang\de-de.js" />
+    <Content Include="FlipClock-master\src\flipclock\js\lang\en-us.js" />
+    <Content Include="FlipClock-master\src\flipclock\js\lang\es-es.js" />
+    <Content Include="FlipClock-master\src\flipclock\js\lang\fi-fi.js" />
+    <Content Include="FlipClock-master\src\flipclock\js\lang\fr-ca.js" />
+    <Content Include="FlipClock-master\src\flipclock\js\lang\it-it.js" />
+    <Content Include="FlipClock-master\src\flipclock\js\lang\lv-lv.js" />
+    <Content Include="FlipClock-master\src\flipclock\js\lang\nl-be.js" />
+    <Content Include="FlipClock-master\src\flipclock\js\lang\no-nb.js" />
+    <Content Include="FlipClock-master\src\flipclock\js\lang\pt-br.js" />
+    <Content Include="FlipClock-master\src\flipclock\js\lang\ru-ru.js" />
+    <Content Include="FlipClock-master\src\flipclock\js\lang\sv-se.js" />
+    <Content Include="FlipClock-master\src\flipclock\js\lang\zh-cn.js" />
+    <Content Include="FlipClock-master\src\flipclock\js\libs\core.js" />
+    <Content Include="FlipClock-master\src\flipclock\js\libs\face.js" />
+    <Content Include="FlipClock-master\src\flipclock\js\libs\factory.js" />
+    <Content Include="FlipClock-master\src\flipclock\js\libs\list.js" />
+    <Content Include="FlipClock-master\src\flipclock\js\libs\plugins.js" />
+    <Content Include="FlipClock-master\src\flipclock\js\libs\time.js" />
+    <Content Include="FlipClock-master\src\flipclock\js\libs\timer.js" />
+    <Content Include="FlipClock-master\src\flipclock\js\vendor\base.js" />
+    <Content Include="ForgotPassword.aspx" />
+    <Content Include="imagesUZHM7ML0.jpg" />
+    <Content Include="InstructionForExam.aspx" />
+    <Content Include="jquery-2.1.4.js" />
+    <Content Include="images\Thumbs.db" />
+    <Content Include="MasterPageSwitch.aspx" />
+    <Content Include="NumberOfStudentByProgram.aspx" />
+    <Content Include="QuizResponseByUser.aspx" />
+    <Content Include="QutionNumberbyExam.aspx" />
+    <Content Include="Reports.aspx" />
+    <Content Include="StudentEachProgram.aspx" />
+    <Content Include="StudentNested.aspx" />
+    <Content Include="Header_Footer.Master" />
+    <Content Include="NestedStudentMasterPage.master" />
+    <Content Include="NestedTeacherMasterPage.master" />
+    <Content Include="SessionsByProgram.aspx" />
+    <Content Include="MasterPage.Master" />
+    <Content Include="FlipClock-master\bower.json" />
+    <Content Include="FlipClock-master\CHANGE LOG.md" />
+    <Content Include="FlipClock-master\package.json" />
+    <Content Include="FlipClock-master\README.md" />
+    <Content Include="FlipClock-master\src\flipclock\css\flipclock.scss" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Home.aspx" />
+    <Content Include="images\img01.jpg" />
+    <Content Include="images\img02.jpg" />
+    <Content Include="images\img03.gif" />
+    <Content Include="images\img04.jpg" />
+    <Content Include="Quiz.aspx" />
+    <Content Include="Registration.aspx" />
+    <Content Include="style.css" />
+    <Content Include="Instal.sql" />
+    <Content Include="TeacherInstructions.aspx" />
+    <Content Include="UpdateDelete.aspx" />
+    <Content Include="UserInformation.aspx" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActiveExam.aspx.cs">
+      <DependentUpon>ActiveExam.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ActiveExam.aspx.designer.cs">
+      <DependentUpon>ActiveExam.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ActiveExamForStudent.aspx.cs">
+      <DependentUpon>ActiveExamForStudent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ActiveExamForStudent.aspx.designer.cs">
+      <DependentUpon>ActiveExamForStudent.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Add_Program_and_Session.aspx.cs">
+      <DependentUpon>Add_Program_and_Session.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Add_Program_and_Session.aspx.designer.cs">
+      <DependentUpon>Add_Program_and_Session.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ChangePassword.aspx.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ChangePassword.aspx.designer.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ExamPage.aspx.cs">
+      <DependentUpon>ExamPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ExamPage.aspx.designer.cs">
+      <DependentUpon>ExamPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FinishExam.aspx.cs">
+      <DependentUpon>FinishExam.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FinishExam.aspx.designer.cs">
+      <DependentUpon>FinishExam.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ForgotPassword.aspx.cs">
+      <DependentUpon>ForgotPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ForgotPassword.aspx.designer.cs">
+      <DependentUpon>ForgotPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InstructionForExam.aspx.cs">
+      <DependentUpon>InstructionForExam.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InstructionForExam.aspx.designer.cs">
+      <DependentUpon>InstructionForExam.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Header_Footer.Master.cs">
+      <DependentUpon>Header_Footer.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Header_Footer.Master.designer.cs">
+      <DependentUpon>Header_Footer.Master</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPageSwitch.aspx.cs">
+      <DependentUpon>MasterPageSwitch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPageSwitch.aspx.designer.cs">
+      <DependentUpon>MasterPageSwitch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NestedTeacherMasterPage.master.cs">
+      <DependentUpon>NestedTeacherMasterPage.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NestedTeacherMasterPage.master.designer.cs">
+      <DependentUpon>NestedTeacherMasterPage.master</DependentUpon>
+    </Compile>
+    <Compile Include="NestedStudentMasterPage.master.cs">
+      <DependentUpon>NestedStudentMasterPage.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NestedStudentMasterPage.master.designer.cs">
+      <DependentUpon>NestedStudentMasterPage.master</DependentUpon>
+    </Compile>
+    <Compile Include="NumberOfStudentByProgram.aspx.cs">
+      <DependentUpon>NumberOfStudentByProgram.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NumberOfStudentByProgram.aspx.designer.cs">
+      <DependentUpon>NumberOfStudentByProgram.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Quiz.aspx.cs">
+      <DependentUpon>Quiz.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quiz.aspx.designer.cs">
+      <DependentUpon>Quiz.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QuizResponseByUser.aspx.cs">
+      <DependentUpon>QuizResponseByUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QuizResponseByUser.aspx.designer.cs">
+      <DependentUpon>QuizResponseByUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QutionNumberbyExam.aspx.cs">
+      <DependentUpon>QutionNumberbyExam.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QutionNumberbyExam.aspx.designer.cs">
+      <DependentUpon>QutionNumberbyExam.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Registration.aspx.cs">
+      <DependentUpon>Registration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Registration.aspx.designer.cs">
+      <DependentUpon>Registration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports.aspx.cs">
+      <DependentUpon>Reports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports.aspx.designer.cs">
+      <DependentUpon>Reports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StudentEachProgram.aspx.cs">
+      <DependentUpon>StudentEachProgram.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StudentEachProgram.aspx.designer.cs">
+      <DependentUpon>StudentEachProgram.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Security.cs" />
+    <Compile Include="TeacherInstructions.aspx.cs">
+      <DependentUpon>TeacherInstructions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TeacherInstructions.aspx.designer.cs">
+      <DependentUpon>TeacherInstructions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserInformation.aspx.cs">
+      <DependentUpon>UserInformation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserInformation.aspx.designer.cs">
+      <DependentUpon>UserInformation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateDelete.aspx.cs">
+      <DependentUpon>UpdateDelete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UpdateDelete.aspx.designer.cs">
+      <DependentUpon>UpdateDelete.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StudentNested.aspx.cs">
+      <DependentUpon>StudentNested.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StudentNested.aspx.designer.cs">
+      <DependentUpon>StudentNested.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SessionsByProgram.aspx.cs">
+      <DependentUpon>SessionsByProgram.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SessionsByProgram.aspx.designer.cs">
+      <DependentUpon>SessionsByProgram.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DAL_Project\DAL_Project.csproj">
+      <Project>{e3026510-5b06-4ff2-816b-3f06cbe5f7df}</Project>
+      <Name>DAL_Project</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>62398</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:62398/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

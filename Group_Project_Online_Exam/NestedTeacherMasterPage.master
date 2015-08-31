@@ -1,0 +1,31 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Header_Footer.Master" AutoEventWireup="true" CodeBehind="NestedTeacherMasterPage.master.cs" Inherits="Group_Project_Online_Exam.NestedTeacherMasterPage" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            
+
+        </asp:ContentPlaceHolder>
+        
+</asp:Content>
+
+<asp:Content ID="Content3" ContentPlaceHolderID="SideBarContentPlaceHolder" runat="server">
+            <ul>
+				<li>
+					<h2>Teacher Options</h2>
+					<ul>
+                        <li><a id="userinfo" href="UserInformation.aspx">User Information </a></li>
+                        <li><a  href="Add_Program_and_Session.aspx">Program and Session </a></li>
+						<li><a id="updatedelete" href="UpdateDelete.aspx">Quiz Update/Delete </a></li>
+						<li><a  id="linkQuiz" href="Quiz.aspx">Quiz Maker</a></li>
+						<li><a id="exam" href="ExamPage.aspx">Exam </a></li>
+						<li><a href="ActiveExam.aspx">Available Exam </a></li>
+						<li><a href="Reports.aspx">Reports </a>
+                            
+						</li> 
+					</ul>
+				</li>               
+</asp:Content>

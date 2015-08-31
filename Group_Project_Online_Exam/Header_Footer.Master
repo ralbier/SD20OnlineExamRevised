@@ -1,0 +1,149 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Header_Footer.master.cs" Inherits="Group_Project_Online_Exam.Header_Footer" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+    <script src="jquery-2.1.4.js"></script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .auto-style1 {
+            width: 171px;
+        }
+        .textbox {}
+        .auto-style6 {
+            width: 84px;
+            text-align: justify;
+        }
+        .auto-style7 {
+            width: 84px;
+            text-align: justify;
+            height: 23px;
+        }
+        .auto-style8 {
+            width: 171px;
+            height: 23px;
+        }
+        .auto-style9 {
+            font-size: x-large;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    
+    <form id="form1" runat="server">
+    <div id="logo">
+		</div>
+	<hr />
+	
+	<div id="header">
+		<div id="menu">
+			<ul>
+				<li><a href="Home.aspx" class="first">Home</a></li>
+				<li class="current_page_item">
+                    <asp:HyperLink ID="hlRegistration" runat="server" Visible="true" NavigateUrl="~/Registration.aspx">Registration</asp:HyperLink></li>
+			</ul>
+		</div>
+		
+		<div id="search">
+             <asp:Label ID="lblFirstname" Font-Size="Medium" ForeColor="White" runat="server" Text=""></asp:Label>
+             
+            <asp:Panel ID="pnlLogout" runat="server" style="float:right;">
+                <asp:Button ID="btnLogout" runat="server" Text="Logout" OnClick="btnLogout_Click" /> <br />
+             </asp:Panel>
+			
+		</div>
+		
+	</div>
+	
+	<div id="page">
+		<div id="content">
+    <div>
+        <div class="LoginPanel">
+                <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+            <asp:UpdatePanel ID="UpdatePanelLogin"  runat="server">
+                <ContentTemplate>
+  <h3 class="auto-style9"><strong>LOGIN</strong></h3><br />
+                 <table style="column-width:50px; width: 500px;">                   
+                                      
+                    <tr>
+                        
+       <td class="auto-style6">
+                            <asp:Label ID="lblUserName" CssClass="Text" runat="server" Text="Email:"></asp:Label>
+                        </td>                 <td class="auto-style1" >
+                            <asp:TextBox ID="txtUserName" CssClass="textbox" runat="server" Text="" Width="158px"></asp:TextBox>
+                        </td>
+                        <td>
+                            @robertsoncollege.net
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="auto-style7">
+                            <br />
+                            <asp:Label ID="lblPassword" CssClass="Text" runat="server" Text="Password:"></asp:Label>
+                        </td>
+                        <td class="auto-style8">
+                            <asp:TextBox ID="txtPassword" runat="server" CssClass="textbox" Text="" TextMode="Password" Width="156px"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="auto-style6"></td>
+                        <td class="auto-style1"></td>
+                    </tr>
+                    <tr>
+                        <td class="auto-style6">                   
+                        </td>
+                        <td class="auto-style1">
+                           <asp:Button ID="btnLogin" CssClass="button" runat="server" Text="Log In" OnClick="btnLogin_Click"  />                   
+                        </td>
+                    </tr>
+                    <tr>
+                        
+                        <td></td>
+                        <td class="auto-style1">
+                            <a href="ForgotPassword.aspx">Forgot Password?</a><br />
+                            
+                            <a href="Registration.aspx">New User</a>
+                        
+                        </td>
+                    </tr>
+                </table>    
+                </ContentTemplate>
+            </asp:UpdatePanel>
+        
+          
+        </div>  
+        
+               
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"> </asp:ContentPlaceHolder>
+	</div>
+   
+		
+</div>
+
+		<div id="sidebar">
+            
+           <asp:ContentPlaceHolder ID="SideBarContentPlaceHolder" runat="server"> </asp:ContentPlaceHolder>
+
+        </div>
+		<div style="clear: both;">&nbsp;</div>
+	</div>
+	
+	<div id="footer">
+		<p>Design by <a href="http://www.worldclasslasik.com/lasik/new-york-lasik">Lasik Eye Surgery</a> | <a href="http://validator.w3.org/check/referer" title="This page validates as XHTML 1.0 
+
+Transitional"><abbr title="eXtensible HyperText Markup Language">XHTML</abbr></a> | <a 
+
+href="http://jigsaw.w3.org/css-validator/check/referer" title="This page validates as CSS"><abbr 
+
+title="Cascading Style Sheets">CSS</abbr></a></p>
+	</div>
+	 </form>
+</body>
+</html>
