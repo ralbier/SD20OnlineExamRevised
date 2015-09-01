@@ -169,11 +169,11 @@ INSERT INTO tbQuestion  (Question,CorrectAnswer,Marks,QuizId)VALUES
 	('Which is not type of Control ?',1,1,1),
 	('Which of the follwing contexts are available in the add watch window?', 4,1,2),
 	('Which window will allow you to halt the execution of your code when a variable changes?',4,1,2),
-	('How can you print the object name associated with the last VB  error to the Immediate window?',3,1,4),
-	('boolean has two values true or false',5,1,1),	
-	('How can you print the object name associated with the last VB  error to the Immediate window?',6,1,1),
-	('What function does the TabStop property on a command button perform?',7,1,1),
-	('You application creates an instance of a form. What is the first event that will be triggered in the from?', 8,1,1)
+	('How can you print the object name associated with the last VB  error to the Immediate window?',3,1,2),
+	('boolean has two values true or false',4,1,1),	
+	('How can you print the object name associated with the last VB  error to the Immediate window?',3,1,1),
+	('What function does the TabStop property on a command button perform?',3,1,1),
+	('You application creates an instance of a form. What is the first event that will be triggered in the from?', 2,1,1)
 
 go
 INSERT INTO tbQuestionsAnswer(AnswerId,Answer,QuestionId)VALUES
