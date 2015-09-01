@@ -15,14 +15,14 @@ namespace Group_Project_Online_Exam
         string conn = ConfigurationManager.ConnectionStrings["Exam"].ConnectionString;
         DataTable dt = new DataTable();
         int rowindex = 0;
-         int counter = 0;
+        int counter = 0;
         string[] Responses;
 
         protected void Page_Load(object sender, EventArgs e)
         {
 
             GetQuizId();
-      
+
             rowindex = ViewState["RowIndex"] == null ? 0 : (int)ViewState["RowIndex"];
             if (ViewState["RowIndex"] == null) ViewState["RowIndex"] = 0;
             loadQuestions();
@@ -34,6 +34,11 @@ namespace Group_Project_Online_Exam
                 Session["Responses"] = Responses;
                 GetEndTime();
                 LoadQuestion();
+            }
+            else
+            {
+                btnback.Enabled = true;
+
             }
 
             counter = (int)Session["NumberofQuestion"];
@@ -48,79 +53,56 @@ namespace Group_Project_Online_Exam
 
         protected void btnNext_Click(object sender, EventArgs e)
         {
-           // btnback.Enabled = true;
+            btnback.Enabled = true;
             string value = ViewState["CorrectAnswer"].ToString();
-            
+
             if (RadioButtonList1.SelectedItem != null)
             {
                 Responses[rowindex] = RadioButtonList1.SelectedIndex.ToString();
             }
-                     
+
             rowindex++;
             ViewState["RowIndex"] = rowindex;
-                
+
 
             if (rowindex > dt.Rows.Count - 1)
             {
                 //Response.Redirect("FinishExam.aspx");
                 btnNext.Enabled = false;
-              //  btnback.Enabled = true;
-                rowindex = -1;
-                ViewState["RowIndex"] = rowindex;
+                btnback.Enabled = true;
+                rowindex = dt.Rows.Count;
+                ViewState["RowIndex"] = rowindex - 1;
                 // TEST IS OVER.
             }
             else
             {
                 LoadQuestion();
             }
-           
+
         }
 
         protected void btnback_Click(object sender, EventArgs e)
         {
-           // btnNext.Enabled = true;
+            btnNext.Enabled = true;
             if (rowindex - 1 >= 0)
             {
                 rowindex--;
                 ViewState["RowIndex"] = rowindex;
-        
+
                 loadQuestions();
                 LoadQuestion();
-              
+
             }
             else
             {
-                
+                btnback.Enabled = false;
                 // you're at the first question, cant go back!
             }
-            
+
 
 
         }
-        protected void Timer1_Tick(object sender, EventArgs e)
-        {
-            //UpdateTimer();
-        }
-
-        private void UpdateTimer()
-        {
-            //DateTime startTime = (DateTime)Session["StartTime"];
-            //DateTime endTime = (DateTime)Session["EndTime"];
-            //DateTime now = DateTime.Now;
-
-            //if (0 > DateTime.Compare(now, endTime))
-            //{
-            //    string minutes = ((Int32)endTime.Subtract(now).TotalMinutes).ToString();
-            //    string seconds = ((Int32)endTime.Subtract(now).Seconds).ToString();
-            //    lblTimer.Text = string.Format("Time Left:00:{0}:{1}", minutes, seconds);
-            //}
-            //else
-            //{
-            //    Timer1.Enabled = true;
-            //    Response.Redirect("FinishExam.aspx");
-            //}
-        }
-
+       
         private void CountNumberOfQuestions()
         {
             DAL mydal = new DAL(conn);
@@ -163,10 +145,11 @@ namespace Group_Project_Online_Exam
             Session["EndTime"] = EndTime;
             Session["StartTime"] = StartTime;
             hiddenSeconds.Value = Math.Round((EndTime - DateTime.Now).TotalSeconds, 0).ToString();
-           // UpdateTimer();
-            if(int.Parse(hiddenSeconds.Value)<0)
+            // UpdateTimer();
+            if (int.Parse(hiddenSeconds.Value) < 0)
             {
                 UpdatePanel1.Visible = false;
+                updateResponses();
             }
         }
 
@@ -175,7 +158,7 @@ namespace Group_Project_Online_Exam
             DAL mydal = new DAL(conn);
             DataSet ds = mydal.ExecuteProcedure("spShowQuiz");
             Session["QuizId"] = int.Parse(ds.Tables[0].Rows[0]["QuizId"].ToString());
-            
+
         }
 
 
@@ -197,28 +180,35 @@ namespace Group_Project_Online_Exam
             }
         }
 
-       
+
         protected void btnfinish_Click1(object sender, EventArgs e)
         {
-              Security s=new Security();
-            DAL mydal = new DAL(conn);
-             //  mydal.AddParam("@QuizResponseId",);
-            for (int i=0;i<(int)Session["NumberofQuestion"];i++)
-            {
-                mydal.ClearParams();
-              mydal.AddParam("@UserId",s.Userid);
-              mydal.AddParam("@QuizId", (int)Session["QuizId"]);
-            
-              
-                mydal.AddParam("@QuestionId",(i+1).ToString());
-              mydal.AddParam("@Response",Responses[i]);
-              mydal.ExecuteProcedure("spInsertQuestionResponse");
-        }}
+            updateResponses();
+        }
 
-       
-      
-      
+
+        public void updateResponses()
+        {
+            Security s = new Security();
+            DAL mydal = new DAL(conn);
+            //  mydal.AddParam("@QuizResponseId",);
+            int j = (int)Session["NumberofQuestion"];
+            for (int i = 0; i < (int)Session["NumberofQuestion"]; i++)
+            {
+                if (Responses[i] != null)
+                {
+                    mydal.ClearParams();
+                    mydal.AddParam("@UserId", s.Userid);
+                    mydal.AddParam("@QuizId", (int)Session["QuizId"]);
+
+
+                    mydal.AddParam("@QuestionId", (i + 1).ToString());
+                    mydal.AddParam("@Response", Responses[i]);
+                    mydal.ExecuteProcedure("spInsertQuestionResponse");
+                }
+            }
         }
     }
+}
 
 
