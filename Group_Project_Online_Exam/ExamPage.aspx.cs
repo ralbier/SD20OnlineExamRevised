@@ -67,11 +67,12 @@ namespace Group_Project_Online_Exam
 
             if (rowindex > dt.Rows.Count - 1)
             {
-                //Response.Redirect("FinishExam.aspx");
                 btnNext.Enabled = false;
                 btnback.Enabled = true;
                 rowindex = dt.Rows.Count;
                 ViewState["RowIndex"] = rowindex - 1;
+               // Response.Redirect("FinishExam.aspx");
+
                 // TEST IS OVER.
             }
             else
@@ -114,21 +115,22 @@ namespace Group_Project_Online_Exam
 
         private void LoadQuestion()
         {
-            string QuestionNumber = dt.Rows[rowindex]["QuestionId"].ToString();
-            lblComplted.Text = "Questions &nbsp" + QuestionNumber + "&nbsp of &nbsp" + dt.Rows.Count + "<br/>";
-            lblmsg.Text = "Question #" + QuestionNumber + ":&nbsp";
-            lblQuestion.Text = dt.Rows[rowindex]["Question"].ToString();
-            RadioButtonList1.Items.Clear();
-            for (int i = 1; i <= 4; i++)
-            {
-                string answerText = dt.Rows[rowindex]["Answer" + i].ToString();
-
-                if (!string.IsNullOrEmpty(answerText))
+            int j = (int)ViewState["RowIndex"] + 1;
+                string QuestionNumber = j.ToString(); ;
+                lblComplted.Text = "Questions &nbsp" + QuestionNumber + "&nbsp of &nbsp" + dt.Rows.Count + "<br/>";
+                lblmsg.Text = "Question #" + QuestionNumber + ":&nbsp";
+                lblQuestion.Text = dt.Rows[rowindex]["Question"].ToString();
+                RadioButtonList1.Items.Clear();
+                for (int i = 1; i <= 4; i++)
                 {
-                    RadioButtonList1.Items.Add(new ListItem(answerText, i.ToString()));
-                }
-            }
+                    string answerText = dt.Rows[rowindex]["Answer" + i].ToString();
 
+                    if (!string.IsNullOrEmpty(answerText))
+                    {
+                        RadioButtonList1.Items.Add(new ListItem(answerText, i.ToString()));
+                    }
+                }
+            
             if (!string.IsNullOrEmpty(Responses[rowindex]))
             {
                 int IndexValue = int.Parse(Responses[rowindex].ToString());
@@ -189,6 +191,7 @@ namespace Group_Project_Online_Exam
 
         public void updateResponses()
         {
+            bool isFinish = false;
             Security s = new Security();
             DAL mydal = new DAL(conn);
             //  mydal.AddParam("@QuizResponseId",);
@@ -196,7 +199,7 @@ namespace Group_Project_Online_Exam
             for (int i = 0; i < (int)Session["NumberofQuestion"]; i++)
             {
                 if (Responses[i] != null)
-                {
+               {
                     mydal.ClearParams();
                     mydal.AddParam("@UserId", s.Userid);
                     mydal.AddParam("@QuizId", (int)Session["QuizId"]);
@@ -204,9 +207,26 @@ namespace Group_Project_Online_Exam
 
                     mydal.AddParam("@QuestionId", (i + 1).ToString());
                     mydal.AddParam("@Response", Responses[i]);
-                    mydal.ExecuteProcedure("spInsertQuestionResponse");
-                }
+                  DataSet ds= mydal.ExecuteProcedure("spInsertQuestionResponse");
+                    string Result=ds.Tables[0].Rows[0]["Result"].ToString();
+                    if(Result=="success")
+                    {
+                       
+                        isFinish = true;
+                    }
+               }
+            
             }
+
+            if (isFinish)
+            {
+                Response.Redirect("FinishExam.aspx");
+            }
+            else
+            {
+                //to do
+            }
+
         }
     }
 }
