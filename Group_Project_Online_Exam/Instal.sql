@@ -156,32 +156,38 @@ create table tbQuestion
 )
 go
 create table tbQuestionsAnswer
-(
-AnswerId int ,
-Answer varchar(max) NULL,
-QuestionId int foreign key references tbQuestion(QuestionId)
-)
-
+	(
+	AnswerId int ,
+	Answer varchar(max) NULL,
+	QuestionId int foreign key references tbQuestion(QuestionId)
+	)
 
 go
 INSERT INTO tbQuestion  (Question,CorrectAnswer,Marks,QuizId)VALUES
-('What  Default Data Type ?',2,1,1),
-( 'What is Default Form Border Style ?',3,1,1),
-( 'Which is not type of Control ?',1,1,1),
-( 'Which of the follwing contexts are available in the add watch window?', 4,1,2),
-( 'Which window will allow you to halt the execution of your code when a variable changes?',4,1,2)
---( 'How can you print the object name associated with the last VB  error to the Immediate window?', 'Debug.Print Err.Number', 'Debug.Print Err.Source', 'Debug.Print Err.Description', 'Debug.Print Err.LastDLLError', 'Debug.Print Err.Source',1,1),
---('boolean has two values true or false','true','false',null,null,'true',1,1),	
---( 'How can you print the object name associated with the last VB  error to the Immediate window?', 'Debug.Print Err.Number', 'Debug.Print Err.Source', 'Debug.Print Err.Description', 'Debug.Print Err.LastDLLError', 'Debug.Print Err.Source',1,1),
---( 'What function does the TabStop property on a command button perform?', 'It determines whether the button can get the focus', 'If set to False it disables the Tabindex property.', 'It determines the order in which the button will receive the focus', 'It determines if the access key swquence can be used', 'It determines whether the button can get the focus',1,1),
---( 'You application creates an instance of a form. What is the first event that will be triggered in the from?', 'Load', 'GotFocus', 'Instance', 'Initialize', 'Initialize',1,1)
+	('What  Default Data Type ?',2,1,1),
+	('What is Default Form Border Style ?',3,1,1),
+	('Which is not type of Control ?',1,1,1),
+	('Which of the follwing contexts are available in the add watch window?', 4,1,2),
+	('Which window will allow you to halt the execution of your code when a variable changes?',4,1,2),
+	('How can you print the object name associated with the last VB  error to the Immediate window?',3,1,4),
+	('boolean has two values true or false',5,1,1),	
+	('How can you print the object name associated with the last VB  error to the Immediate window?',6,1,1),
+	('What function does the TabStop property on a command button perform?',7,1,1),
+	('You application creates an instance of a form. What is the first event that will be triggered in the from?', 8,1,1)
+
 go
 INSERT INTO tbQuestionsAnswer(AnswerId,Answer,QuestionId)VALUES
-							(1,'String',1),(2,'Variant',1),(3,'Interger',1),(4,'Boolean',1)
-							, (1,'Fixed Single',2),( 2,'None',2),(3, 'Sizeable',2),(4,'Fixed Diaglog',2), 
-							 (1,'text',3), (2,'lable',3), (3,'checkbox',3), (4,'option button',3),
-							 (1,'Project',4), (2,'Module',4),(3, 'Procedure',4), (4,'All',4),
-							  (1,'The call stack window',5),(2, 'The immedite window',5), (3,'The locals window',5),(4, 'The watch window',5) 
+	(1,'String',1),(2,'Variant',1),(3,'Interger',1),(4,'Boolean',1),
+	(1,'Fixed Single',2),( 2,'None',2),(3, 'Sizeable',2),(4,'Fixed Diaglog',2), 
+	(1,'text',3), (2,'lable',3), (3,'checkbox',3), (4,'option button',3),
+	(1,'Project',4), (2,'Module',4),(3, 'Procedure',4), (4,'All',4),
+	(1,'The call stack window',5),(2, 'The immedite window',5), (3,'The locals window',5),(4, 'The watch window',5),
+	(1,'Debug.Print Err.Number',6), (2,'Debug.Print Err.Source',6),(3, 'Debug.Print Err.Description',6), (1,'Debug.Print Err.LastDLLError',6),
+	(1,'true',7),(2,'false',7),(3, null,7), (4,null,7),
+	(1,'true',8),(2,'false',8),(3,null,8),(4,null,8),	
+	(1,'Load',9),(2,'GotFocus',9),(3,'Instance',9),(4,'Initialize',9),
+	(1,'Load',10),(2,'GotFocus',10),(3,'Instance', 10),(4,'Initialize',10)
+
 --('What  Default Data Type ?', 'String', 'Variant', 'Integer', 'Boolear','Variant',1,1),
 --( 'What is Default Form Border Style ?', 'Fixed Single', 'None', 'Sizeable','Fixed Diaglog', 'Sizeable',1,1),
 -- ( 'Which is not type of Control ?', 'text', 'lable', 'checkbox', 'option button', 'text',1,1),
