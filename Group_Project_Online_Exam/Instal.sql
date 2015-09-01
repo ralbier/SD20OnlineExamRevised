@@ -236,8 +236,8 @@ go
 
 INSERT INTO tbQuestionResponse(QuizResponseId, QuestionId, Response)VALUES
 
-(1,1,'Variant'),(1,2,'lable'),(1,3,'None'),(1,4,'false'),(1,5,'Module'),(1,6,'Variant'),
-(2,1,'False'),(2,2,'123123'),(2,3,'Hellow WOrlds!'),(2,4,'I dont know'),(2,5,'Okay'),(2,6,'No')
+(1,1,'Variant'),(1,2,'lable'),(1,3,'None'),(1,4,'false'),(1,5,'Module'),
+(2,1,'False'),(2,2,'123123'),(2,3,'Hellow WOrlds!'),(2,4,'I dont know')
 GO
 --------------------------------------------spGetQuizResponseByUserId--------------------------------------------------------------
 
@@ -334,10 +334,10 @@ as begin
 	from tbQuestion
 	
 	where QuizId = @quizId
-	
-
-
 end
+go
+exec spCountNumberOfQuestions @QuizId=2
+
 
 go
 create table tbUserProgram
@@ -364,7 +364,7 @@ go
 --select * from tbActiveExam
 
 insert into tbActiveExam (StartTime,EndTime,QuizId,SessionId)values
-('2015-08-30 11:00:00','2015-09-05 14:12:00',1,3)
+('2015-09-01 12:10:00','2015-09-01 13:00:00',1,3)
 						-- (GETDATE(),DATEADD(minute,30,GETDATE()),1,3)
 ------------------------spInsertUser--------------------------
 go
@@ -962,3 +962,4 @@ where tbQuestion.QuestionId=#QuestionAnswer.QuestionId
 end
 go
 exec sploadQuestions @QuizId=1
+select * from tbQuestionResponse
