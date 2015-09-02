@@ -101,7 +101,7 @@ namespace Group_Project_Online_Exam
                 mydal.AddParam("@TypeOfQuestionsId", ddTypeofQuestions.SelectedValue);
                 mydal.AddParam("@Question", txtQuestion.Text);
                 mydal.AddParam("@CorrectAnswer", txtCorrectAnswer.Text);
-                mydal.AddParam("@Mark", txtMarks.Text);
+                mydal.AddParam("@Marks", txtMarks.Text);
 
                 mydal.AddParam("@Answer1", txtAns1.Text);
                 mydal.AddParam("@Answer2", txtAns2.Text);
@@ -123,7 +123,7 @@ namespace Group_Project_Online_Exam
                    // mydal.AddParam("@CorrectAnswer", txtCorrectAnswer.Text);
                     mydal.AddParam("@Mark", txtMarks.Text);
 
-                    mydal.AddParam("@CorrectAnswer", RdoAnswer.SelectedValue);
+                    mydal.AddParam("@CorrectAnswer", RdoAnswer.SelectedIndex);
                   //  mydal.AddParam("@Answer2", RdoAnswer.);
                     mydal.ExecuteProcedure("spInsertQuestionTrueFalse");
                 }
