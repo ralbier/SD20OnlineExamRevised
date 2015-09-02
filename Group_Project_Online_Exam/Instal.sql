@@ -1,4 +1,4 @@
-﻿use master
+﻿`use master
 go
 drop database dbSD20
 go
