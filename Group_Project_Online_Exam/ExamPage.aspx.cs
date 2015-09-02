@@ -115,13 +115,13 @@ namespace Group_Project_Online_Exam
 
         private void LoadQuestion()
         {
-            int j = (int)ViewState["RowIndex"] + 1;
+            int j = (int)ViewState["RowIndex"] +1;
                 string QuestionNumber = j.ToString(); ;
                 lblComplted.Text = "Questions &nbsp" + QuestionNumber + "&nbsp of &nbsp" + dt.Rows.Count + "<br/>";
                 lblmsg.Text = "Question #" + QuestionNumber + ":&nbsp";
                 lblQuestion.Text = dt.Rows[rowindex]["Question"].ToString();
                 RadioButtonList1.Items.Clear();
-                for (int i = 1; i <= 4; i++)
+                for (int i = 0; i <=3; i++)
                 {
                     string answerText = dt.Rows[rowindex]["Answer" + i].ToString();
 
@@ -194,27 +194,27 @@ namespace Group_Project_Online_Exam
             bool isFinish = false;
             Security s = new Security();
             DAL mydal = new DAL(conn);
-            //  mydal.AddParam("@QuizResponseId",);
+
+            string newQuizResponseId = insertQuizInformation();
+
             int j = (int)Session["NumberofQuestion"];
             for (int i = 0; i < (int)Session["NumberofQuestion"]; i++)
             {
                 if (Responses[i] != null)
                {
                     mydal.ClearParams();
-                    mydal.AddParam("@UserId", s.Userid);
-                    mydal.AddParam("@QuizId", (int)Session["QuizId"]);
-
-
+                    mydal.AddParam("@newQuizResponseId", newQuizResponseId);
                     mydal.AddParam("@QuestionId", (i + 1).ToString());
                     mydal.AddParam("@Response", Responses[i]);
-                  DataSet ds= mydal.ExecuteProcedure("spInsertQuestionResponse");
-                    string Result=ds.Tables[0].Rows[0]["Result"].ToString();
-                    if(Result=="success")
+                    DataSet ds = mydal.ExecuteProcedure("spInsertQuestionResponse");
+                    string Result = ds.Tables[0].Rows[0]["Result"].ToString();
+                    if (Result == "success")
                     {
-                       
+
                         isFinish = true;
                     }
                }
+               
             
             }
 
@@ -227,6 +227,17 @@ namespace Group_Project_Online_Exam
                 //to do
             }
 
+        }
+
+
+        public string insertQuizInformation ()
+        {
+            Security S = new Security();
+            DAL mydal = new DAL(conn);
+            mydal.AddParam("@UserId", S.Userid);
+            mydal.AddParam("@QuizId", (int)Session["QuizId"]);
+          DataSet ds=  mydal.ExecuteProcedure("spInsertQuizInformation");
+          return ds.Tables[0].Rows[0]["newQuizResponseId"].ToString();
         }
     }
 }

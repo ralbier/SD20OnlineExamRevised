@@ -13,15 +13,6 @@ namespace Group_Project_Online_Exam {
     public partial class FinishExam {
         
         /// <summary>
-        /// lblThanks control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblThanks;
-        
-        /// <summary>
         /// lblRight control.
         /// </summary>
         /// <remarks>

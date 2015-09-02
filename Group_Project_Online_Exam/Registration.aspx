@@ -4,6 +4,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
+    <asp:ValidationSummary ID="ValidationSummary1" runat="server" />
+
     <table>
         <asp:Label ID="lblMessage" runat="server" Text=" "></asp:Label>
         <tr>
@@ -26,14 +28,14 @@
             <td>
                 <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="valEmail" runat="server" ErrorMessage="Email is Required!" ControlToValidate="txtEmail" EnableClientScript="false" Text="*"></asp:RequiredFieldValidator>
-                <asp:RegularExpressionValidator ID="RvalEmail" runat="server" ErrorMessage="Email is Required!" ControlToValidate="txtEmail" EnableClientScript="false" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+                <asp:RegularExpressionValidator ID="RvalEmail" runat="server" Text="*" ErrorMessage="Email is Required!" ControlToValidate="txtEmail" EnableClientScript="false" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
             </td>
         </tr>
         <tr>
             <td>Password:</td>
             <td>
                 <asp:TextBox ID="txtPassword" runat="server"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="valPassword" runat="server" ErrorMessage="Password is Required!" ControlToValidate="txtPassword" EnableClientScript="false"></asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="valPassword" runat="server" ErrorMessage="Password is Required!" ControlToValidate="txtPassword" Text="*" EnableClientScript="false"></asp:RequiredFieldValidator>
             </td>
         </tr>
         <tr>
@@ -43,8 +45,8 @@
             </td>
             <td>
                 <asp:TextBox ID="txtCPassword" runat="server"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Confirm Password" ControlToValidate="txtPassword" EnableClientScript="false"></asp:RequiredFieldValidator>
-                <asp:CompareValidator ID="CompareValidator1" runat="server" ErrorMessage="Password is not the same!" EnableClientScript="false" ControlToCompare="txtPassword" ControlToValidate="txtCPassword"></asp:CompareValidator></td>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" Text="*" runat="server" ErrorMessage="Confirm Password" ControlToValidate="txtCPassword" EnableClientScript="false"></asp:RequiredFieldValidator>
+                <asp:CompareValidator ID="CompareValidator1" Text="*" runat="server" ErrorMessage="Password is not the same!" EnableClientScript="false" ControlToCompare="txtCPassword" ControlToValidate="txtPassword"></asp:CompareValidator></td>
         </tr>
         <tr>
             <td></td>

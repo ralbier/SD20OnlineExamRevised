@@ -13,6 +13,9 @@
                         <td>Enter Your Email</td>
                         <td>
                             <asp:TextBox ID="txtEmail" runat="server" Width="149px"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="valEamil" runat="server" ErrorMessage="Required Email" ControlToValidate="txtEmail"></asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="valEmalRegex" runat="server"  ErrorMessage="Email is Required!" ControlToValidate="txtEmail" EnableClientScript="True" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+
                         </td>
                         <td>@robertsoncollege.net
                         </td>

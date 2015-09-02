@@ -3,6 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
+
   <a  href="ExamPage.aspx">  <asp:Label ID="lblShowQuiz" runat="server" Text=""></asp:Label></a>
-   
+    <asp:Label ID="lblMsg" runat="server" Text=""></asp:Label>
 </asp:Content>

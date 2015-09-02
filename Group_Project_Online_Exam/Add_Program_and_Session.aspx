@@ -85,6 +85,7 @@
                 <ItemTemplate>
                     <asp:Label ID="Label1" runat="server" Text='<%# Bind("SessionCode") %>'></asp:Label>
                 </ItemTemplate>
+               
             </asp:TemplateField>
             <asp:TemplateField HeaderText="ProgramId" SortExpression="ProgramId">
                 <EditItemTemplate>
