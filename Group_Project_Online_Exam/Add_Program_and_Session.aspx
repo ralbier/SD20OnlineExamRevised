@@ -22,6 +22,7 @@
     <asp:ValidationSummary ID="ValidationSummary2" ValidationGroup="insert" runat="server" />
         <asp:Label ID="lblError" runat="server" Text=""></asp:Label>
     <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="ProgramId" DataSourceID="SqlDataSource1" ShowFooter="True">
+         <AlternatingRowStyle BackColor="#99CCFF" />
         <Columns>
             <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" ValidationGroup="update" />
             <asp:TemplateField HeaderText="ProgramId" InsertVisible="False" SortExpression="ProgramId">
@@ -72,24 +73,41 @@
         </UpdateParameters>
     </asp:SqlDataSource>
 
-
+         <asp:ValidationSummary ID="ValidationSummary3" ValidationGroup="updateS" runat="server" />
+    <asp:ValidationSummary ID="ValidationSummary4" ValidationGroup="insertS" runat="server" />
+   
         <asp:Label ID="lblError1" runat="server" Text=""></asp:Label>
-    <asp:GridView ID="GridView2" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="SessionId" DataSourceID="SqlDataSource2">
+    <asp:GridView ID="GridView2" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="SessionId" DataSourceID="SqlDataSource2" ShowFooter="True">
+         <AlternatingRowStyle BackColor="#99CCFF" />
         <Columns>
-            <asp:CommandField ShowEditButton="True" ShowDeleteButton="True" />
-            <asp:BoundField DataField="SessionId" HeaderText="SessionId" InsertVisible="False" ReadOnly="True" SortExpression="SessionId" />
+            <asp:CommandField ShowEditButton="True" ShowDeleteButton="True" ValidationGroup="updateS"  />
+            <asp:TemplateField HeaderText="SessionId" InsertVisible="False" SortExpression="SessionId">
+                <EditItemTemplate>
+                    <asp:Label ID="Label1" runat="server" Text='<%# Eval("SessionId") %>'></asp:Label>
+                </EditItemTemplate>
+                <ItemTemplate>
+                    <asp:Label ID="Label3" runat="server" Text='<%# Bind("SessionId") %>'></asp:Label>
+                </ItemTemplate>
+                <FooterTemplate>
+                    <asp:LinkButton ID="lkInsertsession" ValidationGroup="insertS" runat="server" OnClick="lkInsertsession_Click">Insert</asp:LinkButton>
+                </FooterTemplate>
+            </asp:TemplateField>
             <asp:TemplateField HeaderText="SessionCode" SortExpression="SessionCode">
                 <EditItemTemplate>
                     <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("SessionCode") %>'></asp:TextBox>
+                       <asp:RequiredFieldValidator Text="*" ID="valProgramName" ControlToValidate="TextBox1" runat="server" ValidationGroup="updateS" ErrorMessage="Required Session Code"></asp:RequiredFieldValidator>
                 </EditItemTemplate>
                 <ItemTemplate>
                     <asp:Label ID="Label1" runat="server" Text='<%# Bind("SessionCode") %>'></asp:Label>
                 </ItemTemplate>
-               
+                 <FooterTemplate>
+                    <asp:TextBox ID="txtSession" ValidationGroup="insertS" runat="server"></asp:TextBox>
+                    <asp:RequiredFieldValidator Text="*" ID="valProgramName" ControlToValidate="txtSession" runat="server" ValidationGroup="insertS" ErrorMessage="Required Session Code"></asp:RequiredFieldValidator>
+                </FooterTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="ProgramId" SortExpression="ProgramId">
                 <EditItemTemplate>
-                    <asp:DropDownList ID="DropDownList1" SelectedValue='<%# Bind("ProgramId") %>' runat="server" DataSourceID="SqlDataSource3" DataTextField="ProgramName" DataValueField="ProgramId">
+                    <asp:DropDownList ID="DropDownList1" SelectedValue='<%# Bind("ProgramId") %>' runat="server" DataSourceID="SqlDataSource3" DataTextField="ProgramName" DataValueField="ProgramId" AutoPostBack="True">
                     </asp:DropDownList>
                     <br />
                     <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:dbSD20ConnectionString %>" SelectCommand="SELECT [ProgramName], [ProgramId] FROM [tbProgram]"></asp:SqlDataSource>
@@ -97,6 +115,12 @@
                 <ItemTemplate>
                     <asp:Label ID="Label2" runat="server" Text='<%# Bind("ProgramId") %>'></asp:Label>
                 </ItemTemplate>
+                 <FooterTemplate>
+                     <asp:DropDownList ID="DropDownList1" SelectedValue='<%# Bind("ProgramId") %>' runat="server" DataSourceID="SqlDataSource3" DataTextField="ProgramName" DataValueField="ProgramId">
+                    </asp:DropDownList>
+                    <br />
+                    <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:dbSD20ConnectionString %>" SelectCommand="SELECT [ProgramName], [ProgramId] FROM [tbProgram]"></asp:SqlDataSource>
+                </FooterTemplate>
             </asp:TemplateField>
         </Columns>
     </asp:GridView>

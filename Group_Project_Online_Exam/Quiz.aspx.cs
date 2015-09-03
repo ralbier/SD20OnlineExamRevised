@@ -90,28 +90,10 @@ namespace Group_Project_Online_Exam
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-           
-            if (ddTypeofQuestions.SelectedItem.Text == "Multiple Questions/Fill the Blanks")
+            if (Page.IsValid)
             {
-                DAL mydal = new DAL(conn);
-                mydal.AddParam("@QuizTitle",TxtQuizTitle.Text);
-                mydal.AddParam("@ProgramId",ddProgram.SelectedValue);
-                mydal.AddParam("@DifficultyId", ddDifficulty.SelectedValue);
-                mydal.AddParam("@TimeInMinute", Convert.ToDateTime(txtTimeinMinutes.Text));
-                mydal.AddParam("@TypeOfQuestionsId", ddTypeofQuestions.SelectedValue);
-                mydal.AddParam("@Question", txtQuestion.Text);
-                mydal.AddParam("@CorrectAnswer", txtCorrectAnswer.Text);
-                mydal.AddParam("@Marks", txtMarks.Text);
 
-                mydal.AddParam("@Answer1", txtAns1.Text);
-                mydal.AddParam("@Answer2", txtAns2.Text);
-                mydal.AddParam("@Answer3", txtAns3.Text);
-                mydal.AddParam("@Answer4", txtAns4.Text);
-                mydal.ExecuteProcedure("spInsertQuestionMultiChoice");
-            }
-            else
-            {
-                if (RdoAnswer.SelectedItem != null)
+                if (ddTypeofQuestions.SelectedItem.Text == "Multiple Questions/Fill the Blanks")
                 {
                     DAL mydal = new DAL(conn);
                     mydal.AddParam("@QuizTitle", TxtQuizTitle.Text);
@@ -120,19 +102,40 @@ namespace Group_Project_Online_Exam
                     mydal.AddParam("@TimeInMinute", Convert.ToDateTime(txtTimeinMinutes.Text));
                     mydal.AddParam("@TypeOfQuestionsId", ddTypeofQuestions.SelectedValue);
                     mydal.AddParam("@Question", txtQuestion.Text);
-                   // mydal.AddParam("@CorrectAnswer", txtCorrectAnswer.Text);
-                    mydal.AddParam("@Mark", txtMarks.Text);
+                    mydal.AddParam("@CorrectAnswer", txtCorrectAnswer.Text);
+                    mydal.AddParam("@Marks", txtMarks.Text);
 
-                    mydal.AddParam("@CorrectAnswer", RdoAnswer.SelectedIndex);
-                  //  mydal.AddParam("@Answer2", RdoAnswer.);
-                    mydal.ExecuteProcedure("spInsertQuestionTrueFalse");
+                    mydal.AddParam("@Answer1", txtAns1.Text);
+                    mydal.AddParam("@Answer2", txtAns2.Text);
+                    mydal.AddParam("@Answer3", txtAns3.Text);
+                    mydal.AddParam("@Answer4", txtAns4.Text);
+                    mydal.ExecuteProcedure("spInsertQuestionMultiChoice");
                 }
                 else
                 {
+                    if (RdoAnswer.SelectedItem != null)
+                    {
+                        DAL mydal = new DAL(conn);
+                        mydal.AddParam("@QuizTitle", TxtQuizTitle.Text);
+                        mydal.AddParam("@ProgramId", ddProgram.SelectedValue);
+                        mydal.AddParam("@DifficultyId", ddDifficulty.SelectedValue);
+                        mydal.AddParam("@TimeInMinute", Convert.ToDateTime(txtTimeinMinutes.Text));
+                        mydal.AddParam("@TypeOfQuestionsId", ddTypeofQuestions.SelectedValue);
+                        mydal.AddParam("@Question", txtQuestion.Text);
+                        // mydal.AddParam("@CorrectAnswer", txtCorrectAnswer.Text);
+                        mydal.AddParam("@Mark", txtMarks.Text);
 
+                        mydal.AddParam("@CorrectAnswer", RdoAnswer.SelectedIndex);
+                        //  mydal.AddParam("@Answer2", RdoAnswer.);
+                        mydal.ExecuteProcedure("spInsertQuestionTrueFalse");
+                    }
+                    else
+                    {
+
+                    }
                 }
-            }
 
+            }
         }
     }
 }

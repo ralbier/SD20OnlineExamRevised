@@ -6,6 +6,7 @@
 
     <asp:Label ID="lblError" runat="server" Text=""></asp:Label>
     <asp:GridView ID="gvActiveExam" runat="server" DataKeyNames="QuizId" OnRowCommand="gvActiveExam_RowCommand">
+         <AlternatingRowStyle BackColor="#99CCFF" />
         <Columns>
             <asp:ButtonField ButtonType="Button" Text="Active" CommandName="act" />
             <asp:ButtonField ButtonType="Button" Text="Delete" CommandName="del" />

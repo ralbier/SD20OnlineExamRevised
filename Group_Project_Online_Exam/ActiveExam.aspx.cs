@@ -15,7 +15,7 @@ namespace Group_Project_Online_Exam
         string conn = ConfigurationManager.ConnectionStrings["Exam"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
                 for (int index = 1; index <= 24; index++)
                 {
@@ -31,14 +31,14 @@ namespace Group_Project_Online_Exam
                 loadAvailableExam();
                 loadSession();
                 loadQuizTitle();
-              
+
             }
         }
         public void loadAvailableExam()
         {
-            DAL mydal=new DAL(conn);
-            DataSet ds=new DataSet();
-            ds=mydal.ExecuteProcedure("spShowExam");
+            DAL mydal = new DAL(conn);
+            DataSet ds = new DataSet();
+            ds = mydal.ExecuteProcedure("spShowExam");
             gvActiveExam.DataSource = ds.Tables[0];
             gvActiveExam.DataBind();
         }
@@ -69,7 +69,7 @@ namespace Group_Project_Online_Exam
             DataSet ds = new DataSet();
             DateTime start = Convert.ToDateTime(txtStartDate.Text);
             DateTime end = Convert.ToDateTime(txtEndDate.Text);
-         //   DateTime starttime = Convert.ToDateTime(txtStartTime.Text);
+            //   DateTime starttime = Convert.ToDateTime(txtStartTime.Text);
             //// BASED ON txtStartTime.Text somehow
             int hours = Int32.Parse(dd1startH.SelectedValue);
             int minutes = Int32.Parse(dd1startM.SelectedValue);
@@ -79,18 +79,18 @@ namespace Group_Project_Online_Exam
             int Eminutes = Int32.Parse(dd2EndM.SelectedValue);
             end = end.AddHours(Ehours).AddMinutes(Eminutes);
 
-            mydal.AddParam("@StartTime",start);
-            mydal.AddParam("@EndTime",end);
-            mydal.AddParam("@QuizId",ddQuiz.SelectedValue);
-            mydal.AddParam("@SessionId",ddSession.SelectedValue);
+            mydal.AddParam("@StartTime", start);
+            mydal.AddParam("@EndTime", end);
+            mydal.AddParam("@QuizId", ddQuiz.SelectedValue);
+            mydal.AddParam("@SessionId", ddSession.SelectedValue);
             ds = mydal.ExecuteProcedure("spActiveExam");
-           
+
         }
 
         protected void gvActiveExam_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             gvActiveExam.SelectedIndex = Convert.ToInt32(e.CommandArgument);
-            switch(e.CommandName)
+            switch (e.CommandName)
             {
                 case "act":
                     UpdatePanelActive.Visible = true;
@@ -99,18 +99,18 @@ namespace Group_Project_Online_Exam
                     DAL mydal = new DAL(conn);
                     DataSet ds = new DataSet();
                     mydal.AddParam("QuizId", gvActiveExam.SelectedDataKey.Value.ToString());
-                ds = mydal.ExecuteProcedure("spDeleteQuiz");
-            string Result = "";
-            Result = ds.Tables[0].Rows[0]["Result"].ToString();
-            if (Result == "Success")
-            {
-                lblError.Text = "DELETED SUCCESSFULLY!";
-            }
-            else if (Result == "Failed")
-            {
-                lblError.Text = "YOU CANNOT DELETE IT IS ALREADY IN USE!";
-            }
-            loadAvailableExam();
+                    ds = mydal.ExecuteProcedure("spDeleteQuiz");
+                    string Result = "";
+                    Result = ds.Tables[0].Rows[0]["Result"].ToString();
+                    if (Result == "Success")
+                    {
+                        lblError.Text = "DELETED SUCCESSFULLY!";
+                    }
+                    else if (Result == "Failed")
+                    {
+                        lblError.Text = "YOU CANNOT DELETE IT IS ALREADY IN USE!";
+                    }
+                    loadAvailableExam();
                     break;
                 default:
                     break;

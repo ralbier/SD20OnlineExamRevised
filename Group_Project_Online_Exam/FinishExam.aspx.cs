@@ -67,5 +67,12 @@ namespace Group_Project_Online_Exam
             lblRight.Text = Convert.ToInt32(Right).ToString();
             lblWrong.Text = Convert.ToInt32(wrong).ToString(); 
         }
+
+        public void loadResult()
+        {
+            DAL mydal = new DAL(conn);
+          //  mydal.AddParam("");
+
+        }
     }
 }

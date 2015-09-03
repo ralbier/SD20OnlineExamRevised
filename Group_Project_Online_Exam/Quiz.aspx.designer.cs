@@ -40,6 +40,15 @@ namespace Group_Project_Online_Exam {
         protected global::System.Web.UI.WebControls.TextBox TxtQuizTitle;
         
         /// <summary>
+        /// valQuiz control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator valQuiz;
+        
+        /// <summary>
         /// ddProgram control.
         /// </summary>
         /// <remarks>
@@ -121,6 +130,15 @@ namespace Group_Project_Online_Exam {
         protected global::System.Web.UI.WebControls.TextBox txtQuestion;
         
         /// <summary>
+        /// valQuestion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator valQuestion;
+        
+        /// <summary>
         /// PanelPart1 control.
         /// </summary>
         /// <remarks>
@@ -139,6 +157,15 @@ namespace Group_Project_Online_Exam {
         protected global::System.Web.UI.WebControls.TextBox txtAns1;
         
         /// <summary>
+        /// valAns1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator valAns1;
+        
+        /// <summary>
         /// txtAns2 control.
         /// </summary>
         /// <remarks>
@@ -146,6 +173,15 @@ namespace Group_Project_Online_Exam {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtAns2;
+        
+        /// <summary>
+        /// valAns2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator valAns2;
         
         /// <summary>
         /// txtAns3 control.
@@ -157,6 +193,15 @@ namespace Group_Project_Online_Exam {
         protected global::System.Web.UI.WebControls.TextBox txtAns3;
         
         /// <summary>
+        /// valAns3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator valAns3;
+        
+        /// <summary>
         /// txtAns4 control.
         /// </summary>
         /// <remarks>
@@ -166,6 +211,15 @@ namespace Group_Project_Online_Exam {
         protected global::System.Web.UI.WebControls.TextBox txtAns4;
         
         /// <summary>
+        /// valAns4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator valAns4;
+        
+        /// <summary>
         /// txtCorrectAnswer control.
         /// </summary>
         /// <remarks>
@@ -173,6 +227,15 @@ namespace Group_Project_Online_Exam {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCorrectAnswer;
+        
+        /// <summary>
+        /// vaCorrectAnswer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator vaCorrectAnswer;
         
         /// <summary>
         /// PanelPart2 control.
@@ -200,6 +263,15 @@ namespace Group_Project_Online_Exam {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtMarks;
+        
+        /// <summary>
+        /// valMarks control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator valMarks;
         
         /// <summary>
         /// btnSubmit control.
