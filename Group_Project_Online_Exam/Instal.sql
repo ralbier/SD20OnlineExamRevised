@@ -29,7 +29,9 @@ create table tbSession
 )
 go
 insert into tbSession(SessionCode,ProgramId) values
-('AP12',1),('AP13',2),('SD20',3),('CREC01',4),('CREC02',4),('CREC03',4),
+('AP12',1),('AP13',2),
+('SD20',3),
+('CREC01',4),('CREC02',4),('CREC03',4),
 ('LA10',5),('LA11',5),('LA12',5),
 ('TC002',6),('TC003',6),('TC004',6),
 ('VOA1',7),('VOA2',7),('VOA3',7),
@@ -123,10 +125,9 @@ create table tbQuiz
 go
 insert into tbQuiz(QuizTitle,TimeinMinute,ProgramId,DifficultyId,TypeOfQuestionsId)values
 					--('Test1',DATEADD(Minute,60,GETDATE()),1,1,1)
-					('Test1',30,1,1,1),
-					('Test2',30,2,1,1),
-					('Test3',30,3,1,1)
---SELECT * FROM tbQuiz WHERE TimeinMinute > GETDATE()			
+					('SD20 Test1',30,1,1,1),
+					('SD20 Test2',30,2,1,1),
+					('SD20 Test3',30,3,1,1)
 go
 ---------------------------------spGetQuiz----------------------------------------------------------------
 create proc spGetQuiz
@@ -148,10 +149,8 @@ create table tbQuestion
 (
   QuestionId int primary key identity(1,1),
   Question varchar(max),
-  
   CorrectAnswer int,
   Marks int,
-
   QuizId int foreign key references tbQuiz(QuizId)
 )
 go
@@ -219,11 +218,8 @@ create table tbQuizResponse
 go
 
 INSERT INTO tbQuizResponse(ExamDate, UserId, QuizId)VALUES
-('2015-02-07',5,1), ('2015-05-09',10,1)
+('2015-02-07',3,1), ('2015-05-09',10,1)
 
---,('2015-07-10',9,1), ('2014-03-30',4,1),
---('2015-05-15',6,1), ('2015-07-07',7,1),('2014-08-14',8,1), ('2015-08-07',11,1),
---('2014-01-10',5,1), ('2015-04-03',2,1),('2015-04-09',1,1)
 go
 
 --select * from tbUser
@@ -239,16 +235,33 @@ create table tbQuestionResponse
 )
 go
 
+select * from tbQuestionResponse
+go
+INSERT INTO tbQuestionResponse(QuizResponseId, QuestionId, Response)VALUES
+(1,1,1),
+(1,2,2),
+(1,3,0),
+(1,4,3),
+(1,5,3),
+(1,6,0),
+(1,7,0),
+(1,8,0),
+(1,9,3),
+(1,10,2),
+(1,11,3),
+(1,12,2),
+(1,13,1),
+(1,14,2),
+(1,15,0),
+(1,16,2),
+(1,17,1)
 
---INSERT INTO tbQuestionResponse(QuizResponseId, QuestionId, Response)VALUES
 
---(1,1,'Variant'),(1,2,'lable'),(1,3,'None'),(1,4,'false'),(1,5,'Module'),
---(2,1,'False'),(2,2,'123123'),(2,3,'Hellow WOrlds!'),(2,4,'I dont know')
---GO
+go
 --------------------------------------------spGetQuizResponseByUserId--------------------------------------------------------------
 
 
-CREATE PROC spGetAllQuizReponsesByQuizId 
+CREATE PROC spGetAllQuizReponsesByQuizId --@QuizId=1
 (@QuizId AS INT)
 AS
 BEGIN
@@ -373,7 +386,11 @@ go
 --select * from tbActiveExam
 
 insert into tbActiveExam (StartTime,EndTime,QuizId,SessionId)values
-('2015-09-02 14:25:00','2015-09-02 18:25:00',1,3)
+('2015-09-03 07:40:00','2015-09-03 08:50:00',1,3),
+('2015-09-03 07:01:00.000','2015-09-03 09:01:00.000',1,3),
+('2015-09-03 07:01:00.000','2015-09-03 09:01:00.000',1,3),
+('2015-09-03 07:01:00.000','2015-09-03 09:01:00.000',1,3),
+('2015-09-03 07:01:00.000',	'2015-09-03 10:01:00.000',1,3)
 						-- (GETDATE(),DATEADD(minute,30,GETDATE()),1,3)
 ------------------------spInsertUser--------------------------
 go
@@ -697,7 +714,7 @@ end
 go
 
 
-create proc spgetAvailableQuizbyUser -- @UserId=5
+create proc spgetAvailableQuizbyUser 
 (
 @UserId int
 )
@@ -708,6 +725,19 @@ on tbQuiz.QuizId=tbQuizResponse.QuizId
 where tbQuizResponse.QuizResponseId is null and UserId=@UserId
 end
 go
+--if exists (Select * from tbQuizResponse where UserId=@UserId)
+--			select 'Fail' as result
+
+
+--select* from tbQuiz
+--where QuizId not in (
+--select tbQuizResponse.QuizId from tbQuiz ,tbQuizResponse
+--where tbQuiz.QuizId=tbQuizResponse.QuizId and 
+--tbQuizResponse.UserId=10
+
+
+--else
+--begin
 
 
 -----------------------------------------------------------------------------------------------
@@ -717,11 +747,12 @@ create procedure spGetActiveQuizByUser --@UserId=3
 @UserId int
 )
 as begin
---if exists (Select * from tbQuizResponse where UserId=@UserId)
---			select 'Fail' as result
-
---else
---begin
+--select* from tbQuiz
+--where QuizId not in (
+--select tbQuizResponse.QuizId from tbQuiz ,tbQuizResponse
+--where tbQuiz.QuizId=tbQuizResponse.QuizId and 
+--tbQuizResponse.UserId=@UserId
+--)
 	  if Exists (SELECT * FROM tbUserSession WHERE UserId=@UserId)
 		select FirstName,LastName,SessionCode,ProgramName, tbQuiz.QuizTitle
 			from tbUserSession JOIN tbUser ON tbUser.UserId=tbUserSession.UserId
@@ -729,13 +760,14 @@ as begin
 							   JOIN tbProgram ON tbProgram.ProgramId=tbSession.ProgramId
 							   JOIN tbActiveExam ON tbActiveExam.SessionId = tbSession.SessionId
 							   JOIN tbQuiz ON tbQuiz.QuizId = tbActiveExam.QuizId
-							   left outer join tbQuizResponse on tbQuizResponse.QuizId=tbQuiz.QuizId
-			where tbUser.UserId = @UserId AND tbActiveExam.EndTime < GETDATE() OR tbActiveExam.EndTime > GETDATE() and 
-			tbQuizResponse.QuizResponseId is  null 
+							  -- full outer join tbQuizResponse on tbQuizResponse.QuizId=tbQuiz.QuizId
+			where tbUser.UserId = @UserId AND tbActiveExam.EndTime < GETDATE() OR tbActiveExam.EndTime > GETDATE() 
+			--tbQuizResponse.QuizResponseId is  null 
 	--end
 end
 go
-
+select * from tbQuizResponse
+go
 -----------------------------------
 --exec spGetActiveQuizByUser @UserId=3
 create proc spActiveExam
@@ -749,6 +781,8 @@ as begin
 
 	insert into tbActiveExam(StartTime,EndTime,SessionId,QuizId)values
 							(@StartTime,@EndTime,@SessionId,@QuizId)
+	select 'Success' as Result
+
 
 end
 go

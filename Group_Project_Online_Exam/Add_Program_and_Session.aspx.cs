@@ -40,6 +40,14 @@ namespace Group_Project_Online_Exam
             }
         }
 
+        protected void lkInsertsession_Click(object sender, EventArgs e)
+        {
+            SqlDataSource2.InsertParameters["SessionCode"].DefaultValue = ((TextBox)GridView2.FooterRow.FindControl("txtSession")).Text;
+            SqlDataSource2.InsertParameters["ProgramId"].DefaultValue = ((DropDownList)GridView2.FooterRow.FindControl("DropDownList1")).SelectedValue;
+         //   SqlDataSource1.InsertParameters["SessionCode"].DefaultValue = ((TextBox)GridView1.FooterRow.FindControl("txtSession")).Text;
+            SqlDataSource2.Insert();
+        }
+
       
     }
 }

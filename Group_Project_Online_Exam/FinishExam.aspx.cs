@@ -64,8 +64,10 @@ namespace Group_Project_Online_Exam
                     wrong++;
                 }
             }
-            lblRight.Text = Convert.ToInt32(Right).ToString();
-            lblWrong.Text = Convert.ToInt32(wrong).ToString(); 
+            lblRight.Text =""+ Convert.ToInt32(Right).ToString();
+            lblWrong.Text = ""+Convert.ToInt32(wrong).ToString(); 
         }
+
+        
     }
 }

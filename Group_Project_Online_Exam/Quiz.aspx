@@ -31,6 +31,7 @@
                 <td class="auto-style3">Quiz Title</td>
                 <td>
                     <asp:TextBox ID="TxtQuizTitle" runat="server"></asp:TextBox></td>
+                <asp:RequiredFieldValidator ForeColor="Red" ID="valQuiz" EnableClientScript="true" ControlToValidate="TxtQuizTitle" runat="server" ErrorMessage="Required Quiz NAme"></asp:RequiredFieldValidator>
             </tr>
             <tr>
 
@@ -57,7 +58,7 @@
                 </td>
                 <td>Time in Minutes</td>
                 <td>
-                    <asp:TextBox ID="txtTimeinMinutes" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtTimeinMinutes" placeholder="duration like 00:30 mintue or 01:00 hour" runat="server"></asp:TextBox>
                 </td>
 
             </tr>
@@ -94,7 +95,7 @@
                 <td>Question:</td>
                 <td class="auto-style4">
                     <asp:TextBox ID="txtQuestion" runat="server"></asp:TextBox></td>
-
+                <asp:RequiredFieldValidator ForeColor="Red" ID="valQuestion" EnableClientScript="true" ControlToValidate="txtQuestion" runat="server" ErrorMessage="Required Question"></asp:RequiredFieldValidator>
             </tr>
             <tr>
                 <td></td>
@@ -108,21 +109,26 @@
                     <td class="auto-style4">
 
                         <asp:TextBox ID="txtAns1" runat="server"></asp:TextBox></td>
+                          <asp:RequiredFieldValidator ForeColor="Red" ID="valAns1" EnableClientScript="true" ControlToValidate="txtAns1" runat="server" ErrorMessage="Required Answer1"></asp:RequiredFieldValidator>
+          
                 </tr>
                 <tr>
                     <td>Answer 2:</td>
                     <td class="auto-style4">
                         <asp:TextBox ID="txtAns2" runat="server"></asp:TextBox></td>
+                    <asp:RequiredFieldValidator ForeColor="Red" ID="valAns2" EnableClientScript="true" ControlToValidate="txtAns2" runat="server" ErrorMessage="Required Answer2"></asp:RequiredFieldValidator>
                 </tr>
                 <tr>
                     <td>Answer 3:</td>
                     <td class="auto-style4">
                         <asp:TextBox ID="txtAns3" runat="server"></asp:TextBox></td>
+                    <asp:RequiredFieldValidator ForeColor="Red" ID="valAns3" EnableClientScript="true" ControlToValidate="txtAns3" runat="server" ErrorMessage="Required Answer3"></asp:RequiredFieldValidator>
                 </tr>
                 <tr>
                     <td>Answer 4:</td>
                     <td class="auto-style4">
                         <asp:TextBox ID="txtAns4" runat="server"></asp:TextBox></td>
+                    <asp:RequiredFieldValidator ForeColor="Red" ID="valAns4" EnableClientScript="true" ControlToValidate="txtAns4" runat="server" ErrorMessage="Required Answer4"></asp:RequiredFieldValidator>
                 </tr>
                 <tr>
                     <td></td>
@@ -132,6 +138,7 @@
                 </td>
                 <td>
                     <asp:TextBox ID="txtCorrectAnswer" runat="server"></asp:TextBox>
+                    <asp:RequiredFieldValidator ForeColor="Red" ID="vaCorrectAnswer" EnableClientScript="true" ControlToValidate="txtCorrectAnswer" runat="server" ErrorMessage="Required Correct Answer"></asp:RequiredFieldValidator>
                 </td>
             </tr>
         </asp:Panel>
@@ -151,6 +158,8 @@
                 <td>Marks</td>
                 <td>
                     <asp:TextBox ID="txtMarks" runat="server"></asp:TextBox></td>
+                           <asp:RequiredFieldValidator ForeColor="Red" ID="valMarks" EnableClientScript="true" ControlToValidate="txtMarks" runat="server" ErrorMessage="Required Marks"></asp:RequiredFieldValidator>
+          
             </tr>
             <tr>
                 <td></td>
