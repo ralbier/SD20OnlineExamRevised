@@ -31,12 +31,12 @@ namespace Group_Project_Online_Exam
 
         protected void SqlDataSource1_Deleted(object sender, SqlDataSourceStatusEventArgs e)
         {
-            if (e.Exception != null)
-            {
-                //ADMIN CANNOT DELETE  
-                lblError1.Text = "YOU CANNOT DELETE QUESTION,   ALREADY IN USE!";
-                e.ExceptionHandled = true;
-            }
+            //if (e.Exception != null)
+            //{
+            //    //ADMIN CANNOT DELETE  
+            //    lblError1.Text = "YOU CANNOT DELETE QUESTION,   ALREADY IN USE!";
+            //    e.ExceptionHandled = true;
+            //}
         }
     }
 }

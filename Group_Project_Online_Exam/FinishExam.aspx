@@ -2,8 +2,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h3>Thanks </h3>
-   
-    <asp:Label ID="lblRight" runat="server" Text=""></asp:Label>
-    <asp:Label ID="lblWrong" runat="server" Text=""></asp:Label>
+    <h3>Thanks to Write for Online Exam </h3>
+   <br /><br />
+  <h4>  <asp:Label ID="lblRight" runat="server" ForeColor="Blue"  Text=""></asp:Label><br />
+    <asp:Label ID="lblWrong" runat="server" ForeColor="Red" Text=""></asp:Label></h4>
 </asp:Content>
