@@ -5,14 +5,16 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <asp:Label ID="lblError" runat="server" Text=""></asp:Label>
+    <asp:Label ID="lblMsg" runat="server" Text=""></asp:Label><br /><br />
     <asp:GridView ID="gvActiveExam" runat="server" DataKeyNames="QuizId" OnRowCommand="gvActiveExam_RowCommand">
          <AlternatingRowStyle BackColor="#99CCFF" />
         <Columns>
-            <asp:ButtonField ButtonType="Button" Text="Active" CommandName="act" />
+            <%--<asp:ButtonField ButtonType="Button" Text="Active" CommandName="act" />--%>
             <asp:ButtonField ButtonType="Button" Text="Delete" CommandName="del" />
 
         </Columns>
     </asp:GridView>
+    <asp:Button ID="btnActive1" runat="server" Text="Active Exam"  OnClick="btnActive1_Click"/>
     <asp:UpdatePanel ID="UpdatePanelActive" Visible="false" runat="server">
 
         <ContentTemplate>

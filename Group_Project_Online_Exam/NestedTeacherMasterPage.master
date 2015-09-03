@@ -21,7 +21,7 @@
                         <li><a  href="Add_Program_and_Session.aspx">Program and Session </a></li>
 						<li><a id="updatedelete" href="UpdateDelete.aspx">Quiz Update/Delete </a></li>
 						<li><a  id="linkQuiz" href="Quiz.aspx">Quiz Maker</a></li>
-						<li><a id="exam" href="ExamPage.aspx">Exam </a></li>
+						<%--<li><a id="exam" href="ExamPage.aspx">Exam </a></li>--%>
 						<li><a href="ActiveExam.aspx">Available Exam </a></li>
 						<li><a href="Reports.aspx">Reports </a>
                             

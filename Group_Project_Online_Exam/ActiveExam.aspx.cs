@@ -84,7 +84,15 @@ namespace Group_Project_Online_Exam
             mydal.AddParam("@QuizId", ddQuiz.SelectedValue);
             mydal.AddParam("@SessionId", ddSession.SelectedValue);
             ds = mydal.ExecuteProcedure("spActiveExam");
-
+            string result = ds.Tables[0].Rows[0]["Result"].ToString();
+            if (result == "Success")
+            {
+                lblMsg.Text = "Exam Actived";
+            }
+            else
+            {
+                lblMsg.Text = "something Wrong .Try Later!!";
+            }
         }
 
         protected void gvActiveExam_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -94,14 +102,15 @@ namespace Group_Project_Online_Exam
             {
                 case "act":
                     UpdatePanelActive.Visible = true;
+                   
                     break;
                 case "del":
-                    DAL mydal = new DAL(conn);
-                    DataSet ds = new DataSet();
-                    mydal.AddParam("QuizId", gvActiveExam.SelectedDataKey.Value.ToString());
-                    ds = mydal.ExecuteProcedure("spDeleteQuiz");
+                    DAL mydal1 = new DAL(conn);
+                    DataSet ds1 = new DataSet();
+                    mydal1.AddParam("QuizId", gvActiveExam.SelectedDataKey.Value.ToString());
+                    ds1 = mydal1.ExecuteProcedure("spDeleteQuiz");
                     string Result = "";
-                    Result = ds.Tables[0].Rows[0]["Result"].ToString();
+                    Result = ds1.Tables[0].Rows[0]["Result"].ToString();
                     if (Result == "Success")
                     {
                         lblError.Text = "DELETED SUCCESSFULLY!";
@@ -115,6 +124,13 @@ namespace Group_Project_Online_Exam
                 default:
                     break;
             }
+        }
+
+        
+        protected void btnActive1_Click(object sender, EventArgs e)
+        {
+            UpdatePanelActive.Visible = true;
+
         }
     }
 }
