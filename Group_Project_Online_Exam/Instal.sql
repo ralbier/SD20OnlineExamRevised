@@ -107,9 +107,11 @@ SessionId int foreign key references tbSession(SessionId)
 )
 go
 
-insert into tbUserSession(UserId, SessionId)values(3,3), (2,5),(4,6),(5,7), (7,8),(9,7), (6,8)
+insert into tbUserSession(UserId, SessionId)values(3,3), (4,3),(5,7), (7,8),(9,7), (6,8)
 go
 select * from tbUserSession
+--select * from tbActiveExam
+go
 -----------------------------------------------
 create table tbQuiz
 (
@@ -168,8 +170,6 @@ INSERT INTO tbQuestion  (Question,CorrectAnswer,Marks,QuizId)VALUES
 ( 'Which is not type of Control ?',0,1,1),
 ( 'Which of the follwing contexts are available in the add watch window?',3,1,1),
 ('Which window will allow you to halt the execution of your code when a variable changes?',3,1,1),
-( 'How can you print the object name associated with the last VB  error to the Immediate window?',1,1,1),
-( 'How can you print the object name associated with the last VB  error to the Immediate window?', 1,1,1),
 ( 'What function does the TabStop property on a command button perform?',0,1,1),
 ( 'You application creates an instance of a form. What is the first event that will be triggered in the from?', 3,1,1),
 ( 'Which of the following is Hungarian notation for a menu?',2,1,1),
@@ -192,18 +192,18 @@ INSERT INTO tbQuestionsAnswer(AnswerId,Answer,QuestionId)VALUES
 	(0,'text',3),(1, 'lable',3), (2,'checkbox',3),(3, 'option button',3),
 	(0,'Project',4),(1,'Module',4),( 2,'Procedure',4),(3, 'All',4),
 	(0,'The call stack window',5),(1, 'The immedite window',5), (2,'The locals window',5), (3,'The watch window',5),
-	(0,'Debug.Print Err.Number',6),(1,'Debug.Print Err.Source',6),(2,'Debug.Print Err.Description',6),(3, 'Debug.Print Err.LastDLLError',6),
-	(0,'Debug.Print Err.Number',7),(1,'Debug.Print Err.Source',7),(2,'Debug.Print Err.Description',7) ,(3,'Debug.Print Err.LastDLLError',7),
-	(0,'It determines whether the button can get the focus',8),(1,'If set to False it disables the Tabindex property.',8), (2,'It determines the order in which the button will receive the focus',8),(3,'It determines if the access key swquence can be used',8),
-	(0,'Load',9),(1,'GotFocus',9),(2,'Instance',9),(3,'Initialize',9),
-	(0,'Menu',10),(1,'Men',10),(2,'mnu',10),(3,'MN',10),
-	(0,'F2',11),(1,'F3',11),(2,'F4',11),(3,'F5',11),
-	(0,'Unload Form',12),(1,'Unload This',12),(2,'Unload Me',12),(3,'Unload',12),
-	(0,'Caption',13),(1,'Text',13),(2,'String',13),(3,'None of the above',13),
-	(0,'8',14),(1,'7',14),(2,'6',14),(3,'5',14),
-	(0,'-32768 to 32767',15),(1,'123-133',15),(2,'152 to 258',15),(3,'-78954 to 32564',15),
-	(0,'integer',16),(1,'string',16),(2,'character',16),(3,'print',16),
-	(0,'number',17),(1,'character',17),(2,'string',17),(3,'integer',17)
+	--(0,'Debug.Print Err.Number',6),(1,'Debug.Print Err.Source',6),(2,'Debug.Print Err.Description',6),(3, 'Debug.Print Err.LastDLLError',6),
+	--(0,'Debug.Print Err.Number',7),(1,'Debug.Print Err.Source',7),(2,'Debug.Print Err.Description',7) ,(3,'Debug.Print Err.LastDLLError',7),
+	(0,'It determines whether the button can get the focus',6),(1,'If set to False it disables the Tabindex property.',6), (2,'It determines the order in which the button will receive the focus',6),(3,'It determines if the access key swquence can be used',6),
+	(0,'Load',7),(1,'GotFocus',7),(2,'Instance',7),(3,'Initialize',7),
+	(0,'Menu',8),(1,'Men',8),(2,'mnu',8),(3,'MN',8),
+	(0,'F2',9),(1,'F3',9),(2,'F4',9),(3,'F5',9),
+	(0,'Unload Form',10),(1,'Unload This',10),(2,'Unload Me',10),(3,'Unload',10),
+	(0,'Caption',11),(1,'Text',11),(2,'String',11),(3,'None of the above',11),
+	(0,'8',12),(1,'7',12),(2,'6',12),(3,'5',12),
+	(0,'-32768 to 32767',13),(1,'123-133',13),(2,'152 to 258',13),(3,'-78954 to 32564',13),
+	(0,'integer',14),(1,'string',14),(2,'character',14),(3,'print',14),
+	(0,'number',15),(1,'character',15),(2,'string',15),(3,'integer',15)
 go
 select * from tbQuestion
 ---------------------------------------------
@@ -243,18 +243,18 @@ INSERT INTO tbQuestionResponse(QuizResponseId, QuestionId, Response)VALUES
 (1,3,0),
 (1,4,3),
 (1,5,3),
+--(1,6,0),
+--(1,7,0),
 (1,6,0),
-(1,7,0),
-(1,8,0),
+(1,7,3),
+(1,8,2),
 (1,9,3),
 (1,10,2),
-(1,11,3),
+(1,11,1),
 (1,12,2),
-(1,13,1),
+(1,13,0),
 (1,14,2),
-(1,15,0),
-(1,16,2),
-(1,17,1)
+(1,15,1)
 
 
 go
@@ -266,10 +266,8 @@ CREATE PROC spGetAllQuizReponsesByQuizId --@QuizId=1
 AS
 BEGIN
 
-
-	DECLARE @TotalMarks DECIMAL
-	SELECT @TotalMarks = CONVERT(DECIMAL,SUM(Marks)) FROM tbQuestion WHERE QuizId = @QuizId
-
+	DECLARE @TotalMarks DECIMAL(10,10)
+	SELECT @TotalMarks = CONVERT(DECIMAL(10,10),SUM(Marks)) FROM tbQuestion WHERE QuizId = @QuizId
 
 SELECT	[first].UserId,
 		[first].Email,
@@ -290,7 +288,7 @@ SELECT	[first].UserId,
 		(SELECT qr.UserId, u.Email, q.QuizTitle, qr.ExamDate, 
 					SUM(qu.Marks) AS [Correct Reponses], 
 					@TotalMarks AS [Number Of Questions],
-					CONVERT(DECIMAL(3,2),(CONVERT(DECIMAL(3,2),SUM(qu.Marks)) / @TotalMarks)) AS [Grade]
+					CONVERT(DECIMAL(10,10),(CONVERT(DECIMAL(10,10),SUM(qu.Marks)) / @TotalMarks)) AS [Grade]
 				FROM tbQuiz q
 					JOIN tbQuizResponse qr ON qr.QuizId = q.QuizId
 					JOIN tbQuestionResponse qur ON qur.QuizResponseId = qr.QuizResponseId
@@ -298,7 +296,6 @@ SELECT	[first].UserId,
 					JOIN tbUser u ON u.UserId = qr.UserId
 					WHERE qu.CorrectAnswer = qur.Response AND q.QuizId = @QuizId
 				GROUP BY qr.UserId, u.Email, q.QuizTitle, qr.ExamDate) AS [second] ON [first].Email = [second].Email
-
 END
 
 GO
@@ -306,7 +303,7 @@ GO
 
 ------------------------------------------------
 -------------------------------------------------------------------------------------------------------------------------------------------
-CREATE PROC spGetQuizResponseByUserId --@UserId=3, @QuizResponseId = 1
+CREATE PROC spGetQuizResponseByUserId @UserId=3,@QuizResponseId = 1
 (
 	@QuizResponseId INT, 
 	@UserId INT
@@ -315,7 +312,7 @@ AS
 BEGIN
 	DECLARE @TotalQuestions INT
 	DECLARE @Marks INT
-	DECLARE @Grade DECIMAL
+	DECLARE @Grade DECIMAL(10,10)
 
 	SELECT @TotalQuestions = COUNT(*) 
 		FROM tbQuiz q 
@@ -332,7 +329,7 @@ BEGIN
 			AND u.UserId = @UserId AND r.QuizResponseId = @QuizResponseId
 	GROUP BY u.UserId, r.QuizResponseId,u.Email
 
-	SET @Grade = CONVERT(DECIMAL(3,2),(CONVERT(DECIMAL,@Marks)/CONVERT(DECIMAL,@TotalQuestions))) * 100.0
+	SET @Grade = CONVERT(DECIMAL(10,10),(CONVERT(DECIMAL(10,10),@Marks)/CONVERT(DECIMAL(10,10),@TotalQuestions))) * 100.0
 
 	SELECT	FirstName, LastName, Email,	
 			@Marks AS [Correct], 
@@ -386,7 +383,7 @@ go
 --select * from tbActiveExam
 
 insert into tbActiveExam (StartTime,EndTime,QuizId,SessionId)values
-('2015-09-03 07:40:00','2015-09-03 08:50:00',1,3),
+('2015-09-03 11:00:00','2015-09-03 18:50:00',1,3),
 ('2015-09-03 07:01:00.000','2015-09-03 09:01:00.000',1,3),
 ('2015-09-03 07:01:00.000','2015-09-03 09:01:00.000',1,3),
 ('2015-09-03 07:01:00.000','2015-09-03 09:01:00.000',1,3),
@@ -742,17 +739,19 @@ go
 
 -----------------------------------------------------------------------------------------------
 
+GO
 create procedure spGetActiveQuizByUser --@UserId=3
 (
 @UserId int
 )
 as begin
---select* from tbQuiz
---where QuizId not in (
---select tbQuizResponse.QuizId from tbQuiz ,tbQuizResponse
---where tbQuiz.QuizId=tbQuizResponse.QuizId and 
---tbQuizResponse.UserId=@UserId
---)
+
+select * from tbQuiz
+where QuizId not in (
+select tbQuizResponse.QuizId from tbQuiz ,tbQuizResponse
+where tbQuiz.QuizId=tbQuizResponse.QuizId and 
+tbQuizResponse.UserId=@UserId)
+
 	  if Exists (SELECT * FROM tbUserSession WHERE UserId=@UserId)
 		select FirstName,LastName,SessionCode,ProgramName, tbQuiz.QuizTitle
 			from tbUserSession JOIN tbUser ON tbUser.UserId=tbUserSession.UserId
