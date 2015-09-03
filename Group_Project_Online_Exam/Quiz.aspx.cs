@@ -103,10 +103,10 @@ namespace Group_Project_Online_Exam
                 mydal.AddParam("@CorrectAnswer", txtCorrectAnswer.Text);
                 mydal.AddParam("@Marks", txtMarks.Text);
 
-                mydal.AddParam("@Answer1", txtAns1.Text);
-                mydal.AddParam("@Answer2", txtAns2.Text);
-                mydal.AddParam("@Answer3", txtAns3.Text);
-                mydal.AddParam("@Answer4", txtAns4.Text);
+                mydal.AddParam("@Answer0", txtAns1.Text);
+                mydal.AddParam("@Answer1", txtAns2.Text);
+                mydal.AddParam("@Answer2", txtAns3.Text);
+                mydal.AddParam("@Answer3", txtAns4.Text);
                 mydal.ExecuteProcedure("spInsertQuestionMultiChoice");
             }
             else
